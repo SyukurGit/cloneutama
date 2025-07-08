@@ -34,7 +34,7 @@
 </a>
 
                 {{-- 3. Pengaturan Halaman Depan --}}
-                <a href="#" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
+                <a href="{{ route('admin.homepage_settings.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
                     <span class="mx-4 font-medium">Pengaturan Halaman Depan</span>
                 </a>
 

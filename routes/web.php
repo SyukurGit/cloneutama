@@ -8,6 +8,7 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\HomepageSettingController; // <-- INI YANG KURANG
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // 1. Dashboard Utama
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // 2. Berita (CRUD) - RUTE INI SEKARANG DIAKTIFKAN
+    // 2. Berita (CRUD)
     Route::resource('berita', NewsController::class);
 
-    // (Route untuk menu lain akan kita tambahkan di sini nanti)
+    // 3. Pengaturan Halaman Depan
+    Route::get('/pengaturan-halaman', [HomepageSettingController::class, 'index'])->name('homepage_settings.index');
+    Route::post('/pengaturan-halaman', [HomepageSettingController::class, 'update'])->name('homepage_settings.update');
 
 });
