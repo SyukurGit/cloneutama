@@ -14,9 +14,9 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        // Jika pengguna sudah login, langsung arahkan ke dasbor
+        // Jika pengguna sudah login, langsung arahkan ke dasbor admin yang baru
         if (Auth::check()) {
-            return redirect()->route('admin.input');
+            return redirect()->route('admin.dashboard');
         }
         return view('loginadmin');
     }
@@ -25,27 +25,30 @@ class LoginController extends Controller
      * Menangani permintaan login dari formulir.
      */
     public function login(Request $request): RedirectResponse
-{
-    // 1. Validasi input dari form
-    $credentials = $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required'],
-    ]);
+    {
+        // 1. Validasi input dari form
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    // 2. Coba untuk melakukan autentikasi
-    if (Auth::attempt($credentials)) {
-        // Jika berhasil, regenerate session untuk keamanan
-        $request->session()->regenerate();
+        // 2. Coba untuk melakukan autentikasi
+        if (Auth::attempt($credentials)) {
+            // Jika berhasil, regenerate session untuk keamanan
+            $request->session()->regenerate();
 
-        // Arahkan ke halaman input berita (INI YANG DIUBAH)
-        return redirect()->intended(route('admin.input'));
+            // ==========================================================
+            // ===        PERUBAHAN UTAMA ADA DI BARIS INI            ===
+            // ==========================================================
+            // Arahkan ke halaman dashboard admin yang baru, bukan ke 'admin.input'
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        // 3. Jika gagal, kembalikan ke halaman login dengan pesan error
+        return back()->withErrors([
+            'email' => 'Email atau Password yang Anda masukkan salah.',
+        ])->onlyInput('email');
     }
-
-    // 3. Jika gagal, kembalikan ke halaman login dengan pesan error
-    return back()->withErrors([
-        'email' => 'Email atau Password yang Anda masukkan salah.',
-    ])->onlyInput('email');
-}
 
     /**
      * Menangani permintaan logout.
