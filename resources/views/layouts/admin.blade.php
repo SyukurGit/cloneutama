@@ -35,9 +35,9 @@
                 <a href="{{ route('admin.program-studi.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.program-studi.*')) bg-gray-700 text-white @endif">
     <span class="mx-4 font-medium">Manajemen Program Studi</span>
 </a>
-                <a href="#" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                    <span class="mx-4 font-medium">Sambutan direktur dan Sosmed</span>
-                </a>
+                <a href="{{ route('admin.director_settings.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.director_settings.*')) bg-gray-700 text-white @endif">
+    <span class="mx-4 font-medium">Sambutan & Sosmed</span>
+</a>
             </nav>
         </aside>
 

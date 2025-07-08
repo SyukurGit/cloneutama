@@ -42,6 +42,7 @@ class SiteSettingController extends Controller
             );
         }
 
-        return redirect()->route('admin.settings.index')->with('success', 'Pengaturan berhasil diperbarui!');
+       
+        return redirect()->route('admin.director_settings.index')->with('success', 'Pengaturan berhasil diperbarui!');
     }
 }

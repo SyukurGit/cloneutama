@@ -51,4 +51,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // 4. Manajemen Program Studi (CRUD)
     Route::resource('program-studi', StudyProgramController::class); // <-- TAMBAHKAN INI
 
+    Route::get('/pengaturan-sambutan', [\App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('director_settings.index');
+    Route::post('/pengaturan-sambutan', [\App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('director_settings.update');
+
 });

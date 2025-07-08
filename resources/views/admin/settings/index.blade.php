@@ -1,8 +1,7 @@
-{{-- resources/views/admin/settings/index.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', 'Pengaturan Halaman')
-@section('header', 'Pengaturan Konten Halaman Utama')
+@section('title', 'Pengaturan Sambutan & Sosmed')
+@section('header', 'Pengaturan Sambutan Direktur & Sosial Media')
 
 @section('content')
 <div class="container mx-auto">
@@ -12,7 +11,8 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
+    {{-- Form ini sekarang mengarah ke route baru kita --}}
+    <form action="{{ route('admin.director_settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="bg-white p-8 rounded-lg shadow-lg space-y-8">
 
@@ -21,12 +21,28 @@
                 <legend class="text-xl font-semibold text-gray-800 px-2">Sambutan Direktur (English)</legend>
                 <div class="mt-4 space-y-4">
                     <div>
+                        <label for="director_greeting_title_en" class="block text-sm font-medium text-gray-700">Judul Atas (e.g. --A WORD FROM THE DIRECTOR--)</label>
+                        <input type="text" name="director_greeting_title_en" id="director_greeting_title_en" value="{{ old('director_greeting_title_en', $settings['director_greeting_title_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                     <div>
+                        <label for="director_name_en" class="block text-sm font-medium text-gray-700">Nama Direktur</label>
+                        <input type="text" name="director_name_en" id="director_name_en" value="{{ old('director_name_en', $settings['director_name_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                     <div>
+                        <label for="director_position_en" class="block text-sm font-medium text-gray-700">Jabatan Direktur</label>
+                        <input type="text" name="director_position_en" id="director_position_en" value="{{ old('director_position_en', $settings['director_position_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div>
                         <label for="director_greeting_intro_en" class="block text-sm font-medium text-gray-700">Intro Sambutan</label>
                         <input type="text" name="director_greeting_intro_en" id="director_greeting_intro_en" value="{{ old('director_greeting_intro_en', $settings['director_greeting_intro_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div>
                         <label for="director_greeting_body_en" class="block text-sm font-medium text-gray-700">Isi Sambutan</label>
                         <textarea name="director_greeting_body_en" id="director_greeting_body_en" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('director_greeting_body_en', $settings['director_greeting_body_en'] ?? '') }}</textarea>
+                    </div>
+                     <div>
+                        <label for="director_greeting_slogan_en" class="block text-sm font-medium text-gray-700">Slogan (Teks dengan tanda kutip)</label>
+                        <input type="text" name="director_greeting_slogan_en" id="director_greeting_slogan_en" value="{{ old('director_greeting_slogan_en', $settings['director_greeting_slogan_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div>
                         <label for="director_image" class="block text-sm font-medium text-gray-700">Foto Direktur</label>
@@ -38,25 +54,28 @@
                 </div>
             </fieldset>
 
-            {{-- Tambahkan fieldset lain untuk bagian lainnya, misal Key Features --}}
+            {{-- Link Sosial Media yang muncul di Hero Section --}}
             <fieldset class="border-t pt-6">
-                <legend class="text-xl font-semibold text-gray-800 px-2">Key Features (English)</legend>
-                <div class="mt-4 space-y-4">
-                    <div>
-                        <label for="key_feature1_title_en" class="block text-sm font-medium text-gray-700">Judul Fitur 1 (Why Us?)</label>
-                        <input type="text" name="key_feature1_title_en" id="key_feature1_title_en" value="{{ old('key_feature1_title_en', $settings['key_feature1_title_en'] ?? '') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                    </div>
+                 <legend class="text-xl font-semibold text-gray-800 px-2">Link Sosial Media (Hero Section)</legend>
+                 <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
                      <div>
-                        <label for="key_feature1_text_en" class="block text-sm font-medium text-gray-700">Teks Fitur 1</label>
-                        <textarea name="key_feature1_text_en" id="key_feature1_text_en" rows="2" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('key_feature1_text_en', $settings['key_feature1_text_en'] ?? '') }}</textarea>
-                    </div>
-                    {{-- Ulangi untuk Fitur 2 dan 3 --}}
-                </div>
+                        <label for="social_link_facebook" class="block text-sm font-medium text-gray-700">Facebook URL</label>
+                        <input type="url" name="social_link_facebook" value="{{ $settings['social_link_facebook'] ?? '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                     </div>
+                     <div>
+                        <label for="social_link_youtube" class="block text-sm font-medium text-gray-700">YouTube URL</label>
+                        <input type="url" name="social_link_youtube" value="{{ $settings['social_link_youtube'] ?? '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                     </div>
+                     <div>
+                        <label for="social_link_instagram" class="block text-sm font-medium text-gray-700">Instagram URL</label>
+                        <input type="url" name="social_link_instagram" value="{{ $settings['social_link_instagram'] ?? '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                     </div>
+                 </div>
             </fieldset>
 
             <div class="flex justify-end pt-4">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">
-                    Simpan Semua Pengaturan
+                    Simpan Perubahan
                 </button>
             </div>
         </div>
