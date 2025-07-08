@@ -8,7 +8,8 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\HomepageSettingController; // <-- INI YANG KURANG
+use App\Http\Controllers\Admin\HomepageSettingController;
+use App\Http\Controllers\Admin\StudyProgramController; // <-- INI YANG KURANG
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // 3. Pengaturan Halaman Depan
     Route::get('/pengaturan-halaman', [HomepageSettingController::class, 'index'])->name('homepage_settings.index');
     Route::post('/pengaturan-halaman', [HomepageSettingController::class, 'update'])->name('homepage_settings.update');
+
+    // 4. Manajemen Program Studi (CRUD)
+    Route::resource('program-studi', StudyProgramController::class); // <-- TAMBAHKAN INI
 
 });
