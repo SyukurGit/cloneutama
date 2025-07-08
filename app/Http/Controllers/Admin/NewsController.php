@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+// PASTIKAN NAMESPACE-NYA SUDAH BENAR SEPERTI INI
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller; // PENTING: Jangan dihapus
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage; // Pastikan baris ini ada
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -15,12 +17,21 @@ class NewsController extends Controller
     public function index()
     {
         $allNews = News::latest()->get();
-        // Pastikan view ini ada: resources/views/admin/news/index.blade.php
-        return view('admin.news.index', ['newsItems' => $allNews]);
+        // Pastikan view ini ada: resources/views/admin/berita/index.blade.php
+        return view('admin.berita.index', ['newsItems' => $allNews]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menampilkan form untuk membuat berita baru.
+     */
+    public function create()
+    {
+        // Pastikan view ini ada: resources/views/admin/berita/create.blade.php
+        return view('admin.berita.create');
+    }
+
+    /**
+     * Menyimpan berita baru ke database.
      */
     public function store(Request $request): RedirectResponse
     {
@@ -38,25 +49,25 @@ class NewsController extends Controller
 
         News::create($validatedData);
 
-        // Redirect ke halaman daftar berita setelah sukses
-        return redirect()->route('admin.news.index')->with('success', 'Berita baru berhasil disimpan!');
+        // Arahkan kembali ke halaman daftar berita dengan route baru
+        return redirect()->route('admin.berita.index')->with('success', 'Berita baru berhasil disimpan!');
     }
 
+
     /**
-     * INI YANG SAYA TAMBAHKAN
-     * Remove the specified resource from storage.
+     * Menghapus berita dari storage dan database.
      */
     public function destroy(News $news): RedirectResponse
     {
-        // 1. Hapus file gambar dari storage jika ada
         if ($news->image) {
             Storage::disk('public')->delete($news->image);
         }
         
-        // 2. Hapus data berita dari database
         $news->delete();
 
-        // 3. Kembali ke halaman daftar berita dengan pesan sukses
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus!');
+        // Arahkan kembali ke halaman daftar berita dengan route baru
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
     }
+
+    // Nanti kita akan tambahkan method show() dan edit() di sini jika diperlukan
 }

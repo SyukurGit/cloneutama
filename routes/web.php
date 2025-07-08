@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-// (Nanti kita akan tambah controller lain di sini)
+use App\Http\Controllers\Admin\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,23 +33,15 @@ Route::controller(LoginController::class)->group(function () {
 |--------------------------------------------------------------------------
 | Rute Panel Admin (Dilindungi & Membutuhkan Login)
 |--------------------------------------------------------------------------
-|
-| Semua URL di sini akan diawali dengan /admin (contoh: /admin/dashboard)
-| dan nama route-nya akan diawali dengan 'admin.' (contoh: admin.dashboard)
-|
 */
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     // 1. Dashboard Utama
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // 2. Berita (CRUD)
-    // Route::resource('berita', BeritaController::class); // Placeholder untuk nanti
+    // 2. Berita (CRUD) - RUTE INI SEKARANG DIAKTIFKAN
+    Route::resource('berita', NewsController::class);
 
-    // 3. Pengaturan Halaman Depan (Hero & Key Features)
-    // Route::get('/pengaturan-halaman', [PengaturanHalamanController::class, 'index'])->name('pengaturan.index');
-    // Route::post('/pengaturan-halaman', [PengaturanHalamanController::class, 'update'])->name('pengaturan.update');
-
-    // (Route untuk menu lain akan kita tambahkan di sini seiring berjalannya waktu)
+    // (Route untuk menu lain akan kita tambahkan di sini nanti)
 
 });

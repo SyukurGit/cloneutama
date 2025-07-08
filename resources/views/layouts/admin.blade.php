@@ -28,10 +28,10 @@
                     <span class="mx-4 font-medium">Dashboard Utama</span>
                 </a>
                 
-                {{-- 2. Berita --}}
-                <a href="#" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
-                    <span class="mx-4 font-medium">Berita</span>
-                </a>
+               {{-- 2. Berita --}}
+<a href="{{ route('admin.berita.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.berita.*')) bg-gray-700 text-white @endif">
+    <span class="mx-4 font-medium">Berita</span>
+</a>
 
                 {{-- 3. Pengaturan Halaman Depan --}}
                 <a href="#" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white">
