@@ -25,6 +25,9 @@
                 <a href="{{ route('admin.input') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.input')) bg-gray-700 text-white @endif">
                     <span class="mx-4 font-medium">Tambah Berita</span>
                 </a>
+                <a href="{{ route('admin.settings.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.settings.index')) bg-gray-700 text-white @endif">
+        <span class="mx-4 font-medium">Pengaturan Halaman</span>
+    </a>
             </nav>
         </aside>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\SiteSettingController;
 
 // --- ROUTE PUBLIK ---
 Route::get('lang/{locale}', [LocalizationController::class, 'setLang'])->name('lang.switch');
@@ -38,5 +39,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     // URL: /admin/news/{id}/delete -> Nama Route: admin.news.destroy
     Route::post('/news/{news}/delete', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::get('/settings', [SiteSettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SiteSettingController::class, 'update'])->name('settings.update');
 });
 
