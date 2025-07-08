@@ -91,9 +91,11 @@
                         @endif
                         <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    
+
+
+                    {{-- {{ route('lang.switch', 'id') }} --}}
                     <div x-show="langOpen" @click.away="langOpen = false" x-transition class="absolute right-0 mt-2 py-1 w-40 bg-white rounded-md shadow-xl z-20" style="display: none;">
-                        <a href="{{ route('lang.switch', 'id') }}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <a href="https://pps.ar-raniry.ac.id/" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
                                 <svg class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6"><rect width="9" height="3" fill="#E31D1A"/><rect y="3" width="9" height="3" fill="#F7F7F7"/></svg>
                             </span>
