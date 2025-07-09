@@ -54,4 +54,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/pengaturan-sambutan', [\App\Http\Controllers\Admin\SiteSettingController::class, 'index'])->name('director_settings.index');
     Route::post('/pengaturan-sambutan', [\App\Http\Controllers\Admin\SiteSettingController::class, 'update'])->name('director_settings.update');
 
+    // 6. Manajemen Tim Pimpinan (CRUD)
+    Route::resource('pimpinan', \App\Http\Controllers\Admin\LeadershipController::class);
+
 });

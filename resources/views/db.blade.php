@@ -34,7 +34,9 @@
 
     <x-alumni-testimonials/>
 
-    <x-leadership-team/>
+    {{-- <x-leadership-team/> --}}
+
+    <x-leadership-team :leaders="$leaders" />
     
    {{-- footer --}}
     <x-footer/>
