@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\StudyProgram;
+use Illuminate\Support\Facades\Schema; // Pastikan ini ada
 
 class StudyProgramSeeder extends Seeder
 {
@@ -13,8 +14,14 @@ class StudyProgramSeeder extends Seeder
      */
     public function run(): void
     {
+        // Mematikan sementara pengecekan relasi untuk mengizinkan truncate
+        Schema::disableForeignKeyConstraints();
+
         // Hapus data lama agar tidak duplikat jika seeder dijalankan lagi
         StudyProgram::truncate();
+
+        // Mengaktifkan kembali pengecekan relasi
+        Schema::enableForeignKeyConstraints();
 
         // Data untuk S3 (Doctoral Degree)
         StudyProgram::create(['name' => 'Islamic Economics [S3]', 'level' => 'S3', 'accreditation' => 'A', 'link' => '#']);

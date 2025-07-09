@@ -11,14 +11,23 @@ class News extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
      */
     protected $fillable = [
+        'title',
+        'content',
         'image',
-        'title_id',
-        'title_en',
-        'content_id',
-        'content_en',
+        'author',
+        'category',
+        'status',
+        'study_program_id',
     ];
+
+    /**
+     * Mendefinisikan relasi ke model StudyProgram.
+     * Sebuah berita bisa jadi milik satu program studi.
+     */
+    public function studyProgram()
+    {
+        return $this->belongsTo(StudyProgram::class);
+    }
 }
