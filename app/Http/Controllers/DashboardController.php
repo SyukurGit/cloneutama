@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Leadership;
 use Illuminate\Http\Request;
+use App\Models\Testimonial;
 
 class DashboardController extends Controller
 {
@@ -18,11 +19,13 @@ class DashboardController extends Controller
 
         // 2. Ambil data pimpinan berdasarkan urutan
         $leaders = Leadership::orderBy('order')->get();
+         $testimonials = Testimonial::latest()->get();
 
         // 3. Kirim data ke view 'db'
         return view('db', [
             'newsItems' => $latestNews,
-            'leaders'   => $leaders
+            'leaders'   => $leaders,
+            'testimonials' => $testimonials,
         ]);
     }
 

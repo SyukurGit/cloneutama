@@ -31,11 +31,10 @@
 
     <x-facilities-grid/>
 
-
-    <x-alumni-testimonials/>
+<x-alumni-testimonials :testimonials="$testimonials" />
+    {{-- <x-alumni-testimonials/> --}}
 
     {{-- <x-leadership-team/> --}}
-
     <x-leadership-team :leaders="$leaders" />
     
    {{-- footer --}}

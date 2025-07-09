@@ -42,6 +42,9 @@
 <a href="{{ route('admin.pimpinan.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.pimpinan.*')) bg-gray-700 text-white @endif">
     <span class="mx-4 font-medium">Manajemen Pimpinan</span>
 </a>
+<a href="{{ route('admin.testimonials.index') }}" class="flex items-center px-4 py-2 text-gray-300 rounded-md hover:bg-gray-700 hover:text-white @if(request()->routeIs('admin.testimonials.*')) bg-gray-700 text-white @endif">
+    <span class="mx-4 font-medium">Manajemen Testimoni</span>
+</a>
             </nav>
         </aside>
 

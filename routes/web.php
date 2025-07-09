@@ -57,4 +57,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // 6. Manajemen Tim Pimpinan (CRUD)
     Route::resource('pimpinan', \App\Http\Controllers\Admin\LeadershipController::class);
 
+    // 7. Manajemen Testimoni
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
 });
