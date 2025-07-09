@@ -59,4 +59,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     // 7. Manajemen Testimoni
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+
+     // Route khusus untuk menangani upload gambar dari TinyMCE
+    Route::post('/upload-image', [\App\Http\Controllers\Admin\NewsController::class, 'uploadImage'])->name('admin.image.upload');
+
+    // TAMBAHKAN DUA ROUTE BARU INI:
+    Route::post('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'store'])->name('admin.trix.attachment.store');
+    Route::delete('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'destroy'])->name('admin.trix.attachment.destroy');
 });

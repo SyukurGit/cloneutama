@@ -17,17 +17,8 @@ class News extends Model
         'content',
         'image',
         'author',
-        'category',
         'status',
-        'study_program_id',
     ];
 
-    /**
-     * Mendefinisikan relasi ke model StudyProgram.
-     * Sebuah berita bisa jadi milik satu program studi.
-     */
-    public function studyProgram()
-    {
-        return $this->belongsTo(StudyProgram::class);
-    }
+    // Method relasi studyProgram() sudah dihapus
 }

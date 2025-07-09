@@ -6,6 +6,8 @@
     <title>@yield('title', 'Admin Panel') - {{ config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" href="{{ asset('images/logouin.png') }}" type="image/png">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
 </head>
 <body class="bg-gray-100 font-sans">
 
@@ -81,5 +83,8 @@
         </div>
     </div>
 
+
+    
+@stack('scripts')
 </body>
 </html>

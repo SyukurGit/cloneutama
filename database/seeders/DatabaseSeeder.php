@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             StudyProgramSeeder::class,
+            AdminUserSeeder::class,
         ]);
     }
 }
