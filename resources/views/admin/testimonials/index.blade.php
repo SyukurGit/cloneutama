@@ -19,21 +19,30 @@
             <tbody>
                 @forelse ($testimonials as $testimonial)
                 <tr>
-                    <td class="px-5 py-5 border-b bg-white text-sm"><img src="{{ asset('storage/' . $testimonial->image_path) }}" alt="{{ $testimonial->name }}" class="w-16 h-16 object-cover rounded-full"></td>
-                    <td class="px-5 py-5 border-b bg-white text-sm">
-                        <p class="text-gray-900 font-bold">{{ $testimonial->name }}</p>
-                        <p class="text-gray-600 italic">"{{ Str::limit($testimonial->quote, 80) }}"</p>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <img src="{{ asset('storage/' . $testimonial->image_path) }}" alt="{{ $testimonial->name }}" class="w-16 h-16 object-cover rounded-full">
                     </td>
-                    <td class="px-5 py-5 border-b bg-white text-sm">
-    <div class="flex items-center gap-4">
-        <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-        <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus testimoni ini?');">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
-        </form>
-    </div>
-</td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 font-bold">{{ $testimonial->name }}</p>
+                        
+                        {{-- ========================================================== --}}
+                        {{--              PERBAIKAN TAMPILAN KOMENTAR               --}}
+                        {{-- ========================================================== --}}
+                        <p class="text-gray-600 italic">"{{ Str::limit(strip_tags($testimonial->quote), 80) }}"</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        {{-- ========================================================== --}}
+                        {{--          PERBAIKAN KOLOM AKSI (EDIT & HAPUS)           --}}
+                        {{-- ========================================================== --}}
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus testimoni ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @empty
                 <tr><td colspan="3" class="text-center py-10">Belum ada testimoni.</td></tr>

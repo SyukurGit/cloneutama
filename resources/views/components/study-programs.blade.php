@@ -1,10 +1,10 @@
 @php
-    // Ambil semua program studi dari database, lalu kelompokkan
-    // berdasarkan jenjang (level 'S3' dan 'S2').
+    // Logika pengambilan data tetap sama
     $programsByLevel = \App\Models\StudyProgram::all()->groupBy('level');
 @endphp
 
 <style>
+    /* KITA KEMBALIKAN STYLE GRADASI ASLI ANDA */
     .program-card {
         background: linear-gradient(135deg, #CA1819 0%, #DC2626 100%);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -35,14 +35,15 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($programsByLevel['S3'] as $program)
-                        {{-- Link sekarang dinamis, begitu juga dengan nama dan akreditasi --}}
-                        <a href="{{ $program->link }}" target="_blank" class="program-card text-white p-6 rounded-lg shadow-md no-underline flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-lg md:text-xl font-semibold mb-2">
-                                    {{ $program->name }}
-                                </h4>
-                            </div>
-                            <p class="text-yellow-300 text-sm font-medium mt-3">
+                        {{-- ========================================================== --}}
+                        {{--           PERUBAHAN HANYA PADA KELAS CSS DI BAWAH          --}}
+                        {{-- ========================================================== --}}
+                        <a href="{{ $program->link }}" target="_blank" 
+                           class="program-card text-white p-4 rounded-lg shadow-md no-underline flex flex-col justify-center">
+                            <h4 class="text-base font-semibold">
+                                {{ $program->name }}
+                            </h4>
+                            <p class="text-yellow-300 text-xs font-medium mt-1">
                                 Accreditation: {{ $program->accreditation }}
                             </p>
                         </a>
@@ -62,13 +63,15 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                      @foreach ($programsByLevel['S2'] as $program)
-                        <a href="{{ $program->link }}" target="_blank" class="program-card text-white p-6 rounded-lg shadow-md no-underline flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-lg md:text-xl font-semibold mb-2">
-                                    {{ $program->name }}
-                                </h4>
-                            </div>
-                            <p class="text-yellow-300 text-sm font-medium mt-3">
+                        {{-- ========================================================== --}}
+                        {{--           PERUBAHAN HANYA PADA KELAS CSS DI BAWAH          --}}
+                        {{-- ========================================================== --}}
+                        <a href="{{ $program->link }}" target="_blank"
+                           class="program-card text-white p-4 rounded-lg shadow-md no-underline flex flex-col justify-center">
+                            <h4 class="text-base font-semibold">
+                                {{ $program->name }}
+                            </h4>
+                            <p class="text-yellow-300 text-xs font-medium mt-1">
                                 Accreditation: {{ $program->accreditation }}
                             </p>
                         </a>

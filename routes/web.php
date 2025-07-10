@@ -64,6 +64,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/upload-image', [\App\Http\Controllers\Admin\NewsController::class, 'uploadImage'])->name('admin.image.upload');
 
     // TAMBAHKAN DUA ROUTE BARU INI:
-    Route::post('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'store'])->name('admin.trix.attachment.store');
-    Route::delete('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'destroy'])->name('admin.trix.attachment.destroy');
+    Route::post('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'store'])->name('trix.attachment.store');
+    Route::delete('trix/attachment', [\App\Http\Controllers\Admin\TrixAttachmentController::class, 'destroy'])->name('trix.attachment.destroy');
 });

@@ -28,7 +28,7 @@
                 
                 {{-- Metadata Penulis dan Tanggal --}}
                 <div class="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500">
-                    <span>Oleh: <span class="font-semibold text-gray-700">{{ $news->author }}</span></span>
+                    <span>By: <span class="font-semibold text-gray-700">{{ $news->author }}</span></span>
                     <span class="hidden sm:inline">&bull;</span>
                     <time datetime="{{ $news->created_at->toIso8601String() }}">
                         {{ $news->created_at->format('d F Y') }}
