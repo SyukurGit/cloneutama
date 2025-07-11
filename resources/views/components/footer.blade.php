@@ -8,7 +8,7 @@
             
             {{-- Contact Info --}}
             <div class="text-sm w-full md:w-auto">
-                <h3 class="text-white font-bold text-base sm:text-lg mb-3 sm:mb-4">POSTGRADUATE UIN AR-RANIRY BANDA ACEH</h3>
+                <h3 class="text-white font-bold text-base sm:text-lg mb-3 sm:mb-4">GRADUATE SCHOOL AR-RANIRY STATE ISLAMIC UNIVERSITY</h3>
                 <div class="flex items-start justify-center md:justify-start mb-2 sm:mb-3">
                     <span class="w-5 mr-2 mt-0.5 flex-shrink-0">📍</span>
                     <span class="text-left">Jl. Ar-Raniry No.1, KOPELMA, Syiah Kuala District, Banda Aceh City</span>
@@ -94,9 +94,8 @@
 
             {{-- RIGHT ITEM (wrapper for text and icons) --}}
             <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-x-6">
-    <a href="https://example.com" target="_blank" class="mb-2 sm:mb-0 text-center text-white hover:underline">
-        Web Development Team
-    </a>
+    <a href="https://github.com/SyukurGit" target="_blank" class="mb-2 sm:mb-0 text-center text-white hover:underline">
+        <>Developer Web Pasca </a>
     <div class="flex space-x-4">
         {{-- Social media links --}}
         <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
