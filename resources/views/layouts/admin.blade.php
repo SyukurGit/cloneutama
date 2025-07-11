@@ -43,7 +43,7 @@
     <a href="{{ route('admin.dashboard') }}">
         
         {{-- Logo ditampilkan saat sidebar TERBUKA --}}
-        <img x-show="isSidebarOpen" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-100 w-auto bg-white p-100 rounded-md shadow-sm">
+        <img x-show="isSidebarOpen" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10 w-auto bg-white p-100 rounded-md shadow-sm">
         
         {{-- Logo ditampilkan saat sidebar DICUITKAN (versi ikon) --}}
         <img x-show="!isSidebarOpen" src="{{ asset('images/logouin.png') }}" alt="Logo Ikon" class="h-10 w-10">
