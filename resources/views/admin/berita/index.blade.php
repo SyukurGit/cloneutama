@@ -34,10 +34,13 @@
                     </div>
                 </div>
                 <div class="p-4 bg-gray-50 border-t flex justify-between items-center">
-                    <a href="{{ route('news.show', $news->id) }}" target="_blank" class="text-sm text-blue-600 hover:underline">Lihat</a>
+                    <a href="{{ route('news.show', $news) }}" target="_blank" class="text-sm text-blue-600 hover:underline">Lihat</a>
                     <div class="flex gap-4">
-                        <a href="{{ route('admin.berita.edit', $news->id) }}" class="text-sm font-medium text-yellow-600 hover:text-yellow-800">Edit</a>
-                        <form action="{{ route('admin.berita.destroy', $news->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?');">
+                        {{-- PERBAIKAN DI SINI --}}
+                        <a href="{{ route('admin.berita.edit', $news) }}" class="text-sm font-medium text-yellow-600 hover:text-yellow-800">Edit</a>
+                        
+                        {{-- PERBAIKAN DI SINI --}}
+                        <form action="{{ route('admin.berita.destroy', $news) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">Hapus</button>

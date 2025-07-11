@@ -20,7 +20,7 @@
                 {{-- Berita Utama (Paling Kiri) --}}
                 <div class="col-span-1">
                     @php $firstNews = $newsItems->first(); @endphp
-                    <a href="{{ route('news.show', $firstNews->id) }}" class="block group no-underline">
+                    <a href="{{ route('news.show', $firstNews) }}" class="block group no-underline">
                         <div class="relative">
                             {{-- Menggunakan path gambar dari database --}}
                             <img src="{{ $firstNews->image ? asset('storage/' . $firstNews->image) : 'https://via.placeholder.com/800x600' }}" alt="{{ $firstNews->title }}" class="w-full h-96 object-cover rounded-lg shadow-lg">
@@ -42,7 +42,7 @@
                     <div class="space-y-6">
                         {{-- Loop untuk 3 berita setelah berita utama --}}
                         @foreach($newsItems->skip(1)->take(3) as $news)
-                            <a href="{{ route('news.show', $news->id) }}" class="flex items-center gap-4 group no-underline">
+    <a href="{{ route('news.show', $news) }}" class="flex items-center gap-4 group no-underline">
                                 <img src="{{ $news->image ? asset('storage/' . $news->image) : 'https://via.placeholder.com/150x150' }}" alt="{{ $news->title }}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
                                 <div>
                                     <h4 class="font-bold text-gray-800 group-hover:text-red-600 transition-colors">

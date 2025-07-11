@@ -2,67 +2,117 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    
-    {{-- ========================================================== --}}
-    {{-- ==    TAMBAHKAN BARIS INI - INI ADALAH KUNCI SOLUSINYA    == --}}
-    {{-- ========================================================== --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Panel') - {{ config('app.name', 'Laravel') }}</title>
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    {{-- Font Awesome untuk Ikon --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="icon" href="{{ asset('images/logouin.png') }}" type="image/png">
+
+    <style>
+        /* Transisi untuk sidebar */
+        .sidebar-transition { transition: width 0.3s ease-in-out, transform 0.3s ease-in-out; }
+        .content-transition { transition: margin-left 0.3s ease-in-out; }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans antialiased">
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
-        <div :class="{ 'translate-x-0 ease-out': sidebarOpen, '-translate-x-full ease-in': !sidebarOpen }"
-            class="fixed z-40 inset-y-0 left-0 w-64 bg-gray-900 text-white transform transition duration-300 md:relative md:translate-x-0 md:flex-shrink-0">
+    <div x-data="{ 
+            isSidebarOpen: window.innerWidth > 768 ? true : false, 
+            isUserMenuOpen: false 
+        }" 
+        x-init="$watch('isSidebarOpen', value => {
+            if (window.innerWidth <= 768) return;
+            localStorage.setItem('sidebarOpen', value);
+        }); isSidebarOpen = (window.innerWidth > 768 && localStorage.getItem('sidebarOpen') === 'true')"
+        class="relative min-h-screen md:flex"
+    >
+        {{-- Sidebar --}}
+        <aside 
+            :class="{ 
+                'translate-x-0': isSidebarOpen && window.innerWidth <= 768, 
+                '-translate-x-full': !isSidebarOpen && window.innerWidth <= 768,
+                'w-64': isSidebarOpen && window.innerWidth > 768,
+                'w-20': !isSidebarOpen && window.innerWidth > 768
+            }"
+            class="fixed inset-y-0 left-0 bg-gray-900 text-white shadow-lg z-30 sidebar-transition md:translate-x-0"
+        >
+           <div class="h-16 flex items-center justify-center px-4 bg-gray-800 border-b border-gray-700">
+    <a href="{{ route('admin.dashboard') }}">
+        
+        {{-- Logo ditampilkan saat sidebar TERBUKA --}}
+        <img x-show="isSidebarOpen" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-100 w-auto bg-white p-100 rounded-md shadow-sm">
+        
+        {{-- Logo ditampilkan saat sidebar DICUITKAN (versi ikon) --}}
+        <img x-show="!isSidebarOpen" src="{{ asset('images/logouin.png') }}" alt="Logo Ikon" class="h-10 w-10">
 
-            <div class="h-16 flex items-center justify-center bg-gray-800 border-b border-gray-700">
-                <a href="{{ route('admin.dashboard') }}" class="text-xl font-bold tracking-wide text-white">
-                    PANEL ADMIN
-                </a>
-            </div>
+    </a>
+</div>
 
             <nav class="px-4 py-4 space-y-2">
-                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.dashboard')) bg-gray-700 @endif">Dashboard Utama</a>
-                <a href="{{ route('admin.berita.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.berita.*')) bg-gray-700 @endif">Berita</a>
-                <a href="{{ route('admin.homepage_settings.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.homepage_settings.*')) bg-gray-700 @endif">Pengaturan Halaman Depan</a>
-                <a href="{{ route('admin.program-studi.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.program-studi.*')) bg-gray-700 @endif">Manajemen Program Studi</a>
-                <a href="{{ route('admin.director_settings.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.director_settings.*')) bg-gray-700 @endif">Sambutan Direktur</a>
-                <a href="{{ route('admin.pimpinan.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.pimpinan.*')) bg-gray-700 @endif">Manajemen Pimpinan</a>
-                <a href="{{ route('admin.testimonials.index') }}" class="block px-4 py-2 rounded-md hover:bg-gray-700 @if(request()->routeIs('admin.testimonials.*')) bg-gray-700 @endif">Manajemen Testimoni</a>
-            </nav>
-        </div>
+                @php
+                    $navLinks = [
+                        ['route' => 'admin.dashboard', 'label' => 'Dashboard Utama', 'icon' => 'fa-home'],
+                        ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper'],
+                        ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop'],
+                        ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie'],
+                        ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap'],
+                        ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots'],
+                        ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users'],
+                        
+                    ];
+                @endphp
 
-        <!-- Content Area -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Header -->
-            <header class="h-16 bg-white shadow-md flex items-center justify-between px-4 md:px-6">
-                <!-- Burger -->
-                <button @click="sidebarOpen = !sidebarOpen" class="text-gray-700 focus:outline-none md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
+                @foreach ($navLinks as $link)
+                    <a href="{{ route($link['route']) }}" 
+                       class="flex items-center px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors duration-200 
+                              @if(request()->routeIs(str_replace('.index', '.*', $link['route']))) bg-red-600 @endif"
+                       :title="isSidebarOpen ? '' : '{{ $link['label'] }}'">
+                        <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
+                        <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
+                    </a>
+                @endforeach
+            </nav>
+        </aside>
+
+        {{-- Backdrop untuk mobile --}}
+        <div x-show="isSidebarOpen && window.innerWidth <= 768" class="fixed inset-0 bg-black opacity-50 z-20" @click="isSidebarOpen = false"></div>
+
+        {{-- Content Area --}}
+        <div class="flex-1 flex flex-col overflow-hidden content-transition" 
+             :class="{ 'md:ml-64': isSidebarOpen, 'md:ml-20': !isSidebarOpen }">
+            
+            {{-- Header --}}
+            <header class="h-16 bg-white shadow-sm flex items-center justify-between px-4 md:px-6 z-10">
+                {{-- Tombol untuk Toggle Sidebar --}}
+                <button @click="isSidebarOpen = !isSidebarOpen" class="text-gray-600 hover:text-red-600 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
                 </button>
 
-                <!-- Title -->
-                <h1 class="text-xl md:text-2xl font-semibold text-gray-800 flex-1 text-center md:text-left">@yield('header', 'Dashboard')</h1>
+                <h1 class="text-xl md:text-2xl font-semibold text-gray-800">@yield('header', 'Dashboard')</h1>
 
-                <!-- Logout -->
-                <form method="POST" action="{{ route('logout') }}" class="hidden md:block">
-                    @csrf
-                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 rounded-lg">
-                        Logout
+                {{-- Menu User --}}
+                <div class="relative">
+                    <button @click="isUserMenuOpen = !isUserMenuOpen" class="flex items-center space-x-2">
+                        <span class="hidden md:inline text-gray-700 font-medium">{{ Auth::user()->name }}</span>
+                        <div class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                        </div>
                     </button>
-                </form>
+                    <div x-show="isUserMenuOpen" @click.away="isUserMenuOpen = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
+                        <a href="{{ route('dashboard') }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Situs</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                        </form>
+                    </div>
+                </div>
             </header>
 
-            <!-- Main Content -->
-            <main class="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-100">
+            {{-- Main Content --}}
+            <main class="flex-1 overflow-y-auto p-4 md:p-8">
                 @yield('content')
             </main>
         </div>

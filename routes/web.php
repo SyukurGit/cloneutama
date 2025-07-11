@@ -18,8 +18,7 @@ use App\Http\Controllers\Admin\StudyProgramController; // <-- INI YANG KURANG
 */
 Route::get('lang/{locale}', [LocalizationController::class, 'setLang'])->name('lang.switch');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/berita/{news}', [DashboardController::class, 'show'])->name('news.show');
-
+Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show'); // <--- INI HASIL PERUBAHANNYA
 /*
 |--------------------------------------------------------------------------
 | Rute Autentikasi (Untuk Login & Logout Admin)
