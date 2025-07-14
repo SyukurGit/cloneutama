@@ -96,13 +96,13 @@
             <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-x-6">
     <a href="https://github.com/SyukurGit" target="_blank" class="mb-2 sm:mb-0 text-center text-white hover:underline">
         <>Developer Web Pasca </a>
-    <div class="flex space-x-4">
+    {{-- <div class="flex space-x-4"> --}}
         {{-- Social media links --}}
-        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        {{-- <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
+        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a> --}}
+    {{-- </div> --}}
 </div>
 
 

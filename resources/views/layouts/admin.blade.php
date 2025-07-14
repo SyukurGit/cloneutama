@@ -39,7 +39,7 @@
             }"
             class="fixed inset-y-0 left-0 bg-gray-900 text-white shadow-lg z-30 sidebar-transition md:translate-x-0"
         >
-           <div class="h-16 flex items-center justify-center px-4 bg-gray-800 border-b border-gray-700">
+           <div class="h-16 flex items-center justify-center px-4 bg-gray-100 border-b border-gray-700">
     <a href="{{ route('admin.dashboard') }}">
         
         {{-- Logo ditampilkan saat sidebar TERBUKA --}}
@@ -102,10 +102,10 @@
                         </div>
                     </button>
                     <div x-show="isUserMenuOpen" @click.away="isUserMenuOpen = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
-                        <a href="{{ route('dashboard') }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Situs</a>
+                        <a href="{{ route('dashboard') }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lihat Situs -></a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                            <button type="submit" class="w-full text-left block px-4 py-2 text-sm font-semibold text-red-600 hover:bg-gray-100">Logout</button>
                         </form>
                     </div>
                 </div>
