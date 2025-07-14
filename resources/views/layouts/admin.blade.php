@@ -59,7 +59,7 @@
                         ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop'],
                         ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie'],
                         ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap'],
-                        ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots'],
+                        ['route' => 'admin.testimonials.index', 'label' => 'Kata Alumni', 'icon' => 'fa-comment-dots'],
                         ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users'],
                         
                     ];

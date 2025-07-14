@@ -5,10 +5,9 @@
 
 @section('content')
 <div class="space-y-8">
-    {{-- Bagian 1: Kartu Statistik --}}
+
+    {{-- Kartu Statistik (Tetap dipertahankan) --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
-        
-        {{-- Card Total Berita --}}
         <div class="bg-white p-6 rounded-2xl shadow-sm flex items-center justify-between">
             <div>
                 <span class="text-sm font-medium text-gray-500">Total Berita</span>
@@ -18,8 +17,6 @@
                 <i class="fas fa-newspaper fa-lg text-red-600"></i>
             </div>
         </div>
-
-        {{-- Card Program Studi --}}
         <div class="bg-white p-6 rounded-2xl shadow-sm flex items-center justify-between">
             <div>
                 <span class="text-sm font-medium text-gray-500">Program Studi</span>
@@ -29,8 +26,6 @@
                 <i class="fas fa-graduation-cap fa-lg text-blue-600"></i>
             </div>
         </div>
-
-        {{-- Card Testimoni --}}
         <div class="bg-white p-6 rounded-2xl shadow-sm flex items-center justify-between">
             <div>
                 <span class="text-sm font-medium text-gray-500">Total Testimoni</span>
@@ -40,65 +35,94 @@
                 <i class="fas fa-comment-dots fa-lg text-green-600"></i>
             </div>
         </div>
-
-        {{-- Card Pimpinan --}}
         <div class="bg-white p-6 rounded-2xl shadow-sm flex items-center justify-between">
             <div>
-                <span class="text-sm font-medium text-gray-500">Jumlah Pimpinan</span>
+                <span class="text-sm font-medium text-gray-500">Pimpinan</span>
                 <p class="text-3xl font-bold text-gray-800">{{ \App\Models\Leadership::count() }}</p>
             </div>
             <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
                 <i class="fas fa-users fa-lg text-yellow-600"></i>
             </div>
         </div>
-
     </div>
 
-    {{-- Bagian 2: Aktivitas Terbaru & Aksi Cepat --}}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {{-- Kolom Kiri: Berita Terbaru --}}
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm">
-            <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4">Aktivitas Berita Terbaru</h3>
-            <div class="space-y-4">
-                @forelse (\App\Models\News::latest()->take(5)->get() as $news)
-                    <div class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                        <div>
-                            <a href="{{ route('admin.berita.edit', $news) }}" class="font-semibold text-gray-700 hover:text-red-600">{{ $news->title }}</a>
-                            <p class="text-xs text-gray-500">Oleh {{ $news->author }} &bull; {{ $news->created_at->diffForHumans() }}</p>
-                        </div>
-                        <span class="text-xs font-bold px-2 py-1 rounded-full 
-                            {{ $news->status == 'Posted' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                            {{ $news->status }}
-                        </span>
+    {{-- Kartu Selamat Datang --}}
+    <div class="bg-gradient-to-r from-red-700 to-red-900 text-white p-8 rounded-2xl shadow-lg">
+        <h2 class="text-3xl font-bold">Selamat Datang, {{ Auth::user()->name }}!</h2>
+        <p class="mt-2 text-red-100">Anda berada di pusat kendali situs. Gunakan menu navigasi di bawah untuk mengelola konten website Anda.</p>
+    </div>
+
+    {{-- Menu Manajemen Utama --}}
+    <div>
+        <h3 class="text-xl font-bold text-gray-700 mb-4">Menu Manajemen Utama</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {{-- Kartu Manajemen Berita --}}
+            <a href="{{ route('admin.berita.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-newspaper fa-lg text-red-600"></i>
                     </div>
-                @empty
-                    <p class="text-center text-gray-500 py-4">Belum ada berita yang ditulis.</p>
-                @endforelse
-            </div>
-        </div>
-
-        {{-- Kolom Kanan: Aksi Cepat --}}
-        <div class="space-y-6">
-            <div class="bg-white p-6 rounded-2xl shadow-sm">
-                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4">Aksi Cepat</h3>
-                <div class="space-y-3">
-                    <a href="{{ route('admin.berita.create') }}" class="w-full flex items-center justify-center bg-red-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-red-700 transition-all transform hover:scale-105">
-                        <i class="fas fa-plus-circle mr-2"></i> Tulis Berita Baru
-                    </a>
-                    <a href="{{ route('admin.program-studi.create') }}" class="w-full flex items-center justify-center bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105">
-                        <i class="fas fa-plus-circle mr-2"></i> Tambah Program Studi
-                    </a>
+                    <h4 class="text-lg font-bold text-gray-800">Manajemen Berita</h4>
+                    <p class="text-sm text-gray-500 mt-1">Tambah, edit, atau hapus artikel berita.</p>
                 </div>
-            </div>
+            </a>
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm">
-                <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4">Tautan Bermanfaat</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('admin.homepage_settings.index') }}" class="text-gray-600 hover:text-red-600 flex items-center"><i class="fas fa-cog fa-fw mr-2"></i> Pengaturan Homepage</a></li>
-                    <li><a href="{{ route('dashboard') }}" target="_blank" class="text-gray-600 hover:text-red-600 flex items-center"><i class="fas fa-external-link-alt fa-fw mr-2"></i> Lihat Situs Publik</a></li>
-                </ul>
-            </div>
+            {{-- Kartu Pengaturan Halaman Depan --}}
+            <a href="{{ route('admin.homepage_settings.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-desktop fa-lg text-blue-600"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800">Halaman Depan</h4>
+                    <p class="text-sm text-gray-500 mt-1">Ubah konten carousel, fitur, dan link sosial media.</p>
+                </div>
+            </a>
+
+            {{-- Kartu Manajemen Pimpinan --}}
+            <a href="{{ route('admin.pimpinan.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users fa-lg text-yellow-600"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800">Manajemen Pimpinan</h4>
+                    <p class="text-sm text-gray-500 mt-1">Kelola daftar dan profil pimpinan.</p>
+                </div>
+            </a>
+
+            {{-- Kartu Manajemen Testimoni --}}
+            <a href="{{ route('admin.testimonials.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-comment-dots fa-lg text-green-600"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800">Manajemen Testimoni</h4>
+                    <p class="text-sm text-gray-500 mt-1">Atur testimoni yang ditampilkan di halaman depan.</p>
+                </div>
+            </a>
+
+             {{-- Kartu Sambutan Direktur --}}
+            <a href="{{ route('admin.director_settings.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-user-tie fa-lg text-indigo-600"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800">Sambutan Direktur</h4>
+                    <p class="text-sm text-gray-500 mt-1">Ubah teks dan foto sambutan direktur.</p>
+                </div>
+            </a>
+            
+             {{-- Kartu Program Studi --}}
+            <a href="{{ route('admin.program-studi.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap fa-lg text-purple-600"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800">Program Studi</h4>
+                    <p class="text-sm text-gray-500 mt-1">Kelola daftar program studi S2 dan S3.</p>
+                </div>
+            </a>
+
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Manajemen Testimoni')
+@section('title', 'Manajemen Testimoni Alumni')
 @section('header', 'Manajemen Testimoni Alumni')
 
 @section('content')
