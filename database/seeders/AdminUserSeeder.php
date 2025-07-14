@@ -20,6 +20,7 @@ class AdminUserSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => 'Admin',
                 'email' => 'admin@webkampus.com',
+                'role' => 'superadmin',
                 'password' => Hash::make('password'), // Ganti 'password' dengan sandi yang aman
                 'created_at' => now(),
                 'updated_at' => now(),

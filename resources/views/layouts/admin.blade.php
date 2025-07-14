@@ -51,30 +51,41 @@
     </a>
 </div>
 
-            <nav class="px-4 py-4 space-y-2">
-                @php
-                    $navLinks = [
-                        ['route' => 'admin.dashboard', 'label' => 'Dashboard Utama', 'icon' => 'fa-home'],
-                        ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper'],
-                        ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop'],
-                        ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie'],
-                        ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap'],
-                        ['route' => 'admin.testimonials.index', 'label' => 'Kata Alumni', 'icon' => 'fa-comment-dots'],
-                        ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users'],
-                        
-                    ];
-                @endphp
+           <nav class="px-4 py-4 space-y-2">
+    @php
+        // Definisikan semua link dengan role yang dibutuhkan
+        $navLinks = [
+            ['route' => 'admin.dashboard', 'label' => 'Dashboard Utama', 'icon' => 'fa-home', 'role' => 'any'], // any = bisa diakses semua role
+            ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper', 'role' => 'any'],
+            ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop', 'role' => 'superadmin'],
+            ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap', 'role' => 'superadmin'],
+            ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie', 'role' => 'superadmin'],
+            ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users', 'role' => 'superadmin'],
+            ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],
+            ['route' => 'admin.users.index', 'label' => 'Setting Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],
+        ];
+    @endphp
 
-                @foreach ($navLinks as $link)
-                    <a href="{{ route($link['route']) }}" 
-                       class="flex items-center px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors duration-200 
-                              @if(request()->routeIs(str_replace('.index', '.*', $link['route']))) bg-red-600 @endif"
-                       :title="isSidebarOpen ? '' : '{{ $link['label'] }}'">
-                        <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
-                        <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
-                    </a>
-                @endforeach
-            </nav>
+    @foreach ($navLinks as $link)
+        @if($link['role'] == 'any' || auth()->user()->role == 'superadmin')
+            {{-- Tampilkan menu jika bisa diakses --}}
+            <a href="{{ route($link['route']) }}" 
+               class="flex items-center px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors duration-200 
+                      @if(request()->routeIs(str_replace('.index', '.*', $link['route']))) bg-red-600 @endif"
+               :title="isSidebarOpen ? '' : '{{ $link['label'] }}'">
+                <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
+                <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
+            </a>
+        @else
+            {{-- Tampilkan menu sebagai disabled jika tidak bisa diakses --}}
+            <div class="flex items-center px-4 py-2.5 rounded-lg text-gray-500 cursor-not-allowed"
+                 :title="isSidebarOpen ? '' : '{{ $link['label'] }} (Akses Ditolak)'">
+                <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
+                <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
+            </div>
+        @endif
+    @endforeach
+</nav>
         </aside>
 
         {{-- Backdrop untuk mobile --}}
