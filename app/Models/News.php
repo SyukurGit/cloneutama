@@ -15,11 +15,13 @@ class News extends Model
      */
     protected $fillable = [
         'title',
-        'slug', // <-- 2. TAMBAHKAN INI
+        'slug', 
         'content',
         'image',
         'author',
         'status',
+        'published_at',
+
     ];
 
     /**
@@ -46,5 +48,12 @@ class News extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+ 
+    }
+
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'news_tag');
     }
 }
