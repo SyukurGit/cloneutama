@@ -56,4 +56,19 @@ class News extends Model
     {
         return $this->belongsToMany(Tag::class, 'news_tag');
     }
+
+     public function getImageUrlAttribute()
+    {
+        // Jika kolom 'image' di database tidak kosong, gunakan gambar tersebut.
+        if ($this->image) {
+            // Cek apakah path gambar adalah path default atau dari storage
+            if ($this->image === 'images/default-news.jpg') {
+                return asset($this->image);
+            }
+            return asset('storage/' . $this->image);
+        }
+
+        // Jika kosong, kembalikan path ke gambar default.
+        return asset('images/default-news.jpg');
+    }
 }
