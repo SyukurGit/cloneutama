@@ -41,6 +41,13 @@ class AuthServiceProvider extends ServiceProvider
         // (sebagai contoh, meskipun Gate::before sudah cukup)
         Gate::define('access-settings', function(User $user) {
             return $user->role === 'superadmin';
+
+            
         });
+
+        Gate::define('manage-news', function(User $user) {
+        return in_array($user->role, ['superadmin', 'admin_berita']);
+    });
+    
     }
 }
