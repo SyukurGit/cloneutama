@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard Admin')
-@section('header', 'Dashboard')
+@section('header', 'Dashboard Control Bahasa Inggris PPS Ar-Raniry')
 
 @section('content')
 <div class="space-y-8">
@@ -59,7 +59,7 @@
 
     {{-- Menu Manajemen Utama --}}
     <div>
-        <h3 class="text-xl font-bold text-gray-700 mb-4">Menu Manajemen Utama</h3>
+        <h3 class="text-xl font-bold text-gray-700 mb-4">Menu Manajemen Utama </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <a href="{{ route('admin.berita.index') }}" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
