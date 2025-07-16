@@ -19,7 +19,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse ($newsItems as $news)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-                <img src="{{ $news->image ? asset('storage/' . $news->image) : 'https://via.placeholder.com/400x200' }}" alt="News Image" class="w-full h-48 object-cover">
+                <img src="{{ $news->image_url }}" alt="News Image" class="w-full h-48 object-cover">
                 <div class="p-4 flex flex-col flex-grow">
                     <div class="flex justify-end items-center mb-2">
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">

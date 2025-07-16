@@ -13,14 +13,12 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable()->after('status');
         });
 
-        // 2. Membuat tabel untuk menyimpan tags
         Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_id'); // Nama Tag Bahasa Indonesia
-            $table->string('name_en'); // Nama Tag Bahasa Inggris
-            $table->string('slug')->unique();
-            $table->timestamps();
-        });
+    $table->id();
+    $table->string('name'); // <-- Hanya satu kolom nama
+    $table->string('slug')->unique();
+    $table->timestamps();
+});
 
         // 3. Membuat tabel penghubung (pivot table)
         Schema::create('news_tag', function (Blueprint $table) {

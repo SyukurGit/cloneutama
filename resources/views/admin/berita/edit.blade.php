@@ -22,6 +22,7 @@
                     {{-- Gambar Utama --}}
                     <div>
                         <label for="image" class="block text-sm font-semibold text-gray-800 mb-2">Ganti Gambar Utama</label>
+                         <input type="hidden" name="remove_image" id="remove_image_input" value="0">
                         <div class="relative">
                             <input type="file" name="image" id="image" class="hidden" accept="image/*" onchange="previewImage(this)">
                             <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
@@ -32,8 +33,10 @@
                                 </div>
                             </label>
                         </div>
-                        <div id="image-preview" class="{{ $news->image ? '' : 'hidden' }} mt-4">
-                            <img id="preview-img" src="{{ $news->image ? asset('storage/' . $news->image) : asset('images/default-news.jpg') }}" class="w-full h-48 object-cover rounded-lg shadow-md" alt="Image Preview">
+                        <div id="image-preview" class="mt-4">
+                            {{-- === INI BAGIAN YANG DIPERBAIKI === --}}
+                            <img id="preview-img" src="{{ $news->image_url }}" class="w-full h-48 object-cover rounded-lg shadow-md" alt="Image Preview">
+                            {{-- ================================ --}}
                             <button type="button" onclick="removeImage()" class="mt-2 text-red-500 hover:text-red-700 text-sm font-medium">Hapus Gambar</button>
                         </div>
                     </div>
@@ -74,31 +77,29 @@
                 </div>
                 
                 {{-- KOTAK KATEGORI --}}
-<div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center border-b pb-2">
-        <i class="fas fa-tags mr-2 text-green-600"></i> Kategori Prodi
-    </h3>
-    <div class="space-y-2 max-h-60 overflow-y-auto pr-2">
-        @php
-            $newsTags = $news->tags->pluck('id')->toArray();
-            $defaultTagId = \App\Models\Tag::where('slug', 'pascasarjana')->first()->id;
-        @endphp
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center border-b pb-2">
+                        <i class="fas fa-tags mr-2 text-green-600"></i> Kategori Prodi
+                    </h3>
+                    <div class="space-y-2 max-h-60 overflow-y-auto pr-2">
+                        @php
+                            $newsTags = $news->tags->pluck('id')->toArray();
+                            $defaultTagId = \App\Models\Tag::where('slug', 'pascasarjana')->first()->id ?? null;
+                        @endphp
 
-        {{-- Tag Default yang Non-aktif --}}
-        <label class="flex items-center p-2 rounded-md bg-gray-100">
-            <input type="checkbox" class="h-4 w-4 rounded border-gray-300" checked disabled>
-            <span class="ml-3 text-sm font-medium text-gray-800">postgraduate</span>
-        </label>
-        
-        {{-- Tag Pilihan Lainnya --}}
-        @foreach($tags as $tag)
-        <label class="flex items-center p-2 rounded-md hover:bg-gray-50">
-            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="h-4 w-4 rounded border-gray-300" @if(in_array($tag->id, $newsTags)) checked @endif>
-            <span class="ml-3 text-sm text-gray-700">{{ $tag->name_en }}</span>
-        </label>
-        @endforeach
-    </div>
-</div>
+                        <label class="flex items-center p-2 rounded-md bg-gray-100">
+                            <input type="checkbox" class="h-4 w-4 rounded border-gray-300" checked disabled>
+                            <span class="ml-3 text-sm font-medium text-gray-800">Postgraduate</span>
+                        </label>
+                        
+                        @foreach($tags as $tag)
+                        <label class="flex items-center p-2 rounded-md hover:bg-gray-50">
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="h-4 w-4 rounded border-gray-300" @if(in_array($tag->id, $newsTags)) checked @endif>
+                            <span class="ml-3 text-sm text-gray-700">{{ $tag->name_en }}</span>
+                        </label>
+                        @endforeach
+                    </div>
+                </div>
                 
                 {{-- TOMBOL SIMPAN --}}
                 <div class="flex items-center justify-end">
@@ -114,7 +115,6 @@
 </div>
 
 @push('scripts')
-{{-- Skrip untuk preview gambar dan Trix editor --}}
 <script>
     function previewImage(input) {
         const preview = document.getElementById('image-preview');
@@ -131,13 +131,8 @@
 
     function removeImage() {
         document.getElementById('image').value = '';
-        document.getElementById('preview-img').src = '{{ asset('images/default-news.jpg') }}'; // Tampilkan gambar default saat ini dihapus
-        // Anda bisa memilih untuk menyembunyikan preview sama sekali
-        // document.getElementById('image-preview').classList.add('hidden');
+        document.getElementById('preview-img').src = '{{ asset('images/default-news.jpg') }}';
     }
-
-    // Skrip Trix sudah ada di file `create`, jadi tidak perlu duplikasi jika Anda sudah memilikinya di layout admin.
-    // Jika belum, Anda bisa tambahkan skrip Trix di sini.
 </script>
 @endpush
 @endsection

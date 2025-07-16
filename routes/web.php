@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\UserController;
 Route::get('lang/{locale}', [LocalizationController::class, 'setLang'])->name('lang.switch');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show'); // <-- perubahan slug
-
+Route::get('/berita', [\App\Http\Controllers\NewsPageController::class, 'index'])->name('news.index');
 /*
 |--------------------------------------------------------------------------
 | Rute Autentikasi (Untuk Login & Logout Admin)

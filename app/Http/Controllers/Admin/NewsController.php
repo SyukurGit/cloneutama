@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 
 class NewsController extends Controller
 {
+    // ... (fungsi index, create, store tidak berubah, kita hanya fokus pada update)
     public function index()
     {
         Gate::authorize('manage-news');
@@ -41,9 +42,6 @@ class NewsController extends Controller
 
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('images', 'public');
-        } else {
-            // Jika tidak ada gambar, gunakan path gambar default
-            $validatedData['image'] = 'images/default-news.jpg';
         }
 
         $news = News::create($validatedData);
@@ -53,7 +51,7 @@ class NewsController extends Controller
         if ($defaultTag) {
             $tagsToSync[] = $defaultTag->id;
         }
-        $news->tags()->sync($tagsToSync);
+        $news->tags()->sync(array_unique($tagsToSync));
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil disimpan!');
     }
@@ -68,6 +66,9 @@ class NewsController extends Controller
         ]);
     }
 
+    /**
+     * FUNGSI UPDATE YANG SUDAH DIPERBAIKI TOTAL
+     */
     public function update(Request $request, News $beritum)
     {
         Gate::authorize('manage-news');
@@ -79,61 +80,63 @@ class NewsController extends Controller
             'author' => 'required|string|max:255',
             'status' => 'required|string',
             'published_at' => 'required|date',
-            'tags' => 'nullable|array'
+            'tags' => 'nullable|array',
+            'remove_image' => 'nullable|boolean' // Validasi untuk input hapus gambar
         ]);
 
-        if ($request->hasFile('image')) {
-            // Hapus gambar lama jika bukan gambar default
-            if ($beritum->image && $beritum->image !== 'images/default-news.jpg') {
+        // Update data teks dan tanggal
+        $beritum->title = $validatedData['title'];
+        $beritum->content = $validatedData['content'];
+        $beritum->author = $validatedData['author'];
+        $beritum->status = $validatedData['status'];
+        $beritum->published_at = $validatedData['published_at'];
+
+        // Logika untuk menghapus gambar jika tombol "Hapus Gambar" diklik
+        if ($request->input('remove_image') == '1') {
+            if ($beritum->image && Storage::disk('public')->exists($beritum->image)) {
                 Storage::disk('public')->delete($beritum->image);
             }
-            $validatedData['image'] = $request->file('image')->store('images', 'public');
+            $beritum->image = null; // Set kolom image menjadi kosong
+        }
+
+        // Logika untuk mengganti/menambah gambar baru
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama jika ada
+            if ($beritum->image && Storage::disk('public')->exists($beritum->image)) {
+                Storage::disk('public')->delete($beritum->image);
+            }
+            $beritum->image = $request->file('image')->store('images', 'public');
         }
         
-        $beritum->update($validatedData);
+        // Simpan semua perubahan ke database
+        $beritum->save();
         
+        // Sinkronisasi Tags
         $defaultTag = Tag::where('slug', 'pascasarjana')->first();
         $tagsToSync = $request->tags ?? [];
         if ($defaultTag) {
             $tagsToSync[] = $defaultTag->id;
         }
-        $beritum->tags()->sync($tagsToSync);
+        $beritum->tags()->sync(array_unique($tagsToSync));
         
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
     
-    /**
-     * Menghapus berita dari database dan storage.
-     */
     public function destroy(News $beritum)
     {
         Gate::authorize('manage-news');
-
-        // Hapus gambar dari storage, kecuali jika itu adalah gambar default
-        if ($beritum->image && $beritum->image !== 'images/default-news.jpg') {
+        if ($beritum->image && Storage::disk('public')->exists($beritum->image)) {
             Storage::disk('public')->delete($beritum->image);
         }
-        
-        // Hapus relasi tags terlebih dahulu
         $beritum->tags()->detach();
-
-        // Hapus record berita dari database
         $beritum->delete();
-
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 
-    /**
-     * Menangani upload gambar dari editor Trix.
-     */
     public function uploadImage(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg|max:2048',
-        ]);
-
+        $request->validate(['file' => 'required|image|max:2048']);
         $path = $request->file('file')->store('content_images', 'public');
-
         return response()->json(['location' => asset('storage/' . $path)]);
     }
 }

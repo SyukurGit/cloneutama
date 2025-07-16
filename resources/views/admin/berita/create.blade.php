@@ -80,7 +80,7 @@
                     <div class="space-y-2 max-h-60 overflow-y-auto pr-2">
                         {{-- Tag Default yang Non-aktif --}}
                         <label class="flex items-center p-2 rounded-md bg-gray-100">
-                            <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked disabled>
+                            <input type="checkbox" name="tags[]" value="{{ \App\Models\Tag::where('slug', 'pascasarjana')->first()->id }}" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" checked disabled>
                             <span class="ml-3 text-sm font-medium text-gray-800">Postgraduate</span>
                         </label>
                         

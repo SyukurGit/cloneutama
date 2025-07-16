@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Models\Setting;
+use App\Models\StudyProgram; // <-- 1. IMPORT MODEL
+use App\Observers\StudyProgramObserver; // <-- 2. IMPORT OBSERVER
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,8 +32,10 @@ class AppServiceProvider extends ServiceProvider
 
             // Bagikan variabel $settings ke SEMUA view yang ada di aplikasi.
             View::share('settings', $settings);
+             // 3. TAMBAHKAN BARIS INI
+        StudyProgram::observe(StudyProgramObserver::class);
 
-            // BARIS LAMA SUDAH DIHAPUS DARI SINI
+           
         }
     }
 }
