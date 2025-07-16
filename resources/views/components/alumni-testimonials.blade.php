@@ -53,7 +53,7 @@
                                 </div>
                                 <div>
                                     <p class="font-bold text-gray-800">{{ $testimonial->name }}</p>
-                                    <p class="text-sm text-gray-500">UIN Ar-Raniry Postgraduate</p>
+                                    <p class="text-sm text-gray-500">AR-RANIRY GRADUATE SCHOOL PROGRAM</p>
                                 </div>
                             </div>
                             <div class="absolute right-8 bottom-8 text-8xl text-gray-100 font-serif">”</div>

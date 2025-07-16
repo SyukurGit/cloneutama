@@ -11,37 +11,42 @@ class SiteSettingController extends Controller
 {
     public function index()
     {
-        // Ambil semua data setting dan ubah menjadi format 'key' => 'value' agar mudah diakses di view
         $settings = Setting::all()->pluck('value', 'key');
-
-        // Pastikan view ada di resources/views/admin/settings/index.blade.php
         return view('admin.settings.index', compact('settings'));
     }
 
     public function update(Request $request)
     {
+        // Ambil semua data dari request kecuali token
         $settings = $request->except('_token');
 
+        // ==========================================================
+        //         TAMBAHKAN LOGIKA INI UNTUK MENANGANI SWITCH
+        // ==========================================================
+        // Jika 'director_greeting_enabled' tidak ada di request (artinya switch 'off'),
+        // kita set nilainya menjadi 'off' secara manual sebelum menyimpan.
+        if (!$request->has('director_greeting_enabled')) {
+            $settings['director_greeting_enabled'] = 'off';
+        }
+        // ==========================================================
+        //                  AKHIR LOGIKA BARU
+        // ==========================================================
+
         foreach ($settings as $key => $value) {
-            // Jika request adalah file (untuk gambar)
             if ($request->hasFile($key)) {
-                // Hapus gambar lama jika ada
                 $oldImage = Setting::find($key);
                 if ($oldImage && $oldImage->value) {
                     Storage::disk('public')->delete($oldImage->value);
                 }
-                // Simpan gambar baru
                 $path = $request->file($key)->store('site_images', 'public');
                 $value = $path;
             }
 
-            // updateOrCreate akan membuat data baru jika belum ada, atau update jika sudah ada
             Setting::updateOrCreate(
                 ['key' => $key],
                 ['value' => $value]
             );
         }
-
        
         return redirect()->route('admin.director_settings.index')->with('success', 'Pengaturan berhasil diperbarui!');
     }
