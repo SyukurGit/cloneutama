@@ -20,7 +20,7 @@
                     
                     {{-- Gambar Utama --}}
                     <div>
-                        <label for="image" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Utama (Opsional)</label>
+                        <label for="image" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Utama Berita</label>
                         <div class="relative">
                             <input type="file" name="image" id="image" class="hidden" accept="image/*" onchange="previewImage(this)">
                             <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
@@ -52,7 +52,7 @@
                 {{-- KOTAK PUBLIKASI --}}
                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center border-b pb-2">
-                        <i class="fas fa-paper-plane mr-2 text-blue-600"></i> Publikasi
+                        <i class="fas fa-paper-plane mr-2 text-red-600"></i> Publikasi
                     </h3>
                     <div class="space-y-5">
                         <div>
@@ -74,25 +74,32 @@
                 
                 {{-- KOTAK KATEGORI --}}
                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center border-b pb-2">
-                        <i class="fas fa-tags mr-2 text-green-600"></i> Kategori Prodi
-                    </h3>
-                    <div class="space-y-2 max-h-60 overflow-y-auto pr-2">
-                        {{-- Tag Default yang Non-aktif --}}
-                        <label class="flex items-center p-2 rounded-md bg-gray-100">
-                            <input type="checkbox" name="tags[]" value="{{ \App\Models\Tag::where('slug', 'pascasarjana')->first()->id }}" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" >
-                            <span class="ml-3 text-sm font-medium text-gray-800">Postgraduate</span>
-                        </label>
-                        
-                        {{-- Tag Pilihan Lainnya --}}
-                        @foreach($tags as $tag)
-                        <label class="flex items-center p-2 rounded-md hover:bg-gray-50">
-                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                            <span class="ml-3 text-sm text-gray-700">{{ $tag->name_en }}</span>
-                        </label>
-                        @endforeach
-                    </div>
-                </div>
+    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center border-b pb-2">
+        <i class="fas fa-tags mr-2 text-red-600"></i> Kategori Prodi
+    </h3>
+    <div class="space-y-2 max-h-60 overflow-y-auto pr-2">
+        {{-- =============================================== --}}
+        {{--         UBAH BAGIAN INI UNTUK TAG DEFAULT        --}}
+        {{-- =============================================== --}}
+        @if($defaultTag)
+        <label class="flex items-center p-2 rounded-md hover:bg-gray-50">
+            <input type="checkbox" name="tags[]" value="{{ $defaultTag->id }}" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+            <span class="ml-3 text-sm font-medium text-gray-800">{{ $defaultTag->name_en }}</span>
+        </label>
+        @endif
+        
+        {{-- Tag Pilihan Lainnya --}}
+        @foreach($otherTags as $tag)
+        <label class="flex items-center p-2 rounded-md hover:bg-gray-50">
+            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+            <span class="ml-3 text-sm text-gray-700">{{ $tag->name_en }}</span>
+        </label>
+        @endforeach
+        {{-- =============================================== --}}
+        {{--              AKHIR PERUBAHAN VIEW               --}}
+        {{-- =============================================== --}}
+    </div>
+</div>
                 
                 {{-- TOMBOL PUBLIKASI --}}
                 <div class="flex items-center justify-end">

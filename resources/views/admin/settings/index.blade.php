@@ -18,7 +18,7 @@
         @csrf
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 flex justify-between items-center">
+            <div class="bg-gradient-to-r from-red-600 to-red-700 px-6 py-4 flex justify-between items-center">
                 <h2 class="text-xl font-semibold text-white flex items-center">
                     <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -35,7 +35,7 @@
                         <div class="relative">
                             <input id="director_greeting_enabled" name="director_greeting_enabled" type="checkbox" class="sr-only" x-model="enabled" value="on">
                             <div class="block bg-gray-200 w-14 h-8 rounded-full"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform" :class="{ 'translate-x-6 !bg-green-400': enabled }"></div>
+                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-transform" :class="{ 'translate-x-6 !bg-green-600': enabled }"></div>
                         </div>
                     </label>
                 </div>
@@ -133,7 +133,7 @@
 
             <div class="bg-gray-50 px-6 py-4 border-t border-gray-100">
                 <div class="flex justify-end">
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg transition-colors shadow-sm flex items-center">
+                    <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-6 rounded-lg transition-colors shadow-sm flex items-center">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                         </svg>

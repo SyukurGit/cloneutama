@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="flex justify-end pt-8">
-            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Update Perubahan</button>
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg">Update Perubahan</button>
         </div>
     </form>
 </div>

@@ -33,7 +33,7 @@
     <div class="bg-white p-6 rounded-2xl shadow-sm">
         <div class="flex justify-between items-center border-b pb-3 mb-4">
             <h3 class="text-lg font-bold text-gray-800">Daftar Admin Berita</h3>
-            <a href="{{ route('admin.users.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">+ Tambah Admin Berita</a>
+            <a href="{{ route('admin.users.create') }}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">+ Tambah Admin Berita</a>
         </div>
         <div class="overflow-x-auto">
             <table class="min-w-full">
