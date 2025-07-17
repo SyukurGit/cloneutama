@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Manajemen Berita')
-@section('header', 'Manajemen Artikel Berita')
+@section('header', 'Manajemen Artikel Berita English')
 
 @section('content')
 <div class="container mx-auto" x-data="{ 
@@ -17,7 +17,7 @@
 
     <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
         <div>
-            <h2 class="text-2xl font-semibold text-gray-800">Daftar Artikel</h2>
+            <h2 class="text-2xl font-semibold text-gray-800">Daftar Artikel English</h2>
             <p class="text-sm text-gray-500">Kelola, filter, dan cari semua artikel berita.</p>
         </div>
         <a href="{{ route('admin.berita.create') }}" class="w-full sm:w-auto bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-lg shadow-md flex-shrink-0 flex items-center justify-center">

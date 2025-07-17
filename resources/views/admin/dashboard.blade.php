@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Dashboard Admin')
-@section('header', 'Dashboard Control Bahasa Inggris PPS Ar-Raniry')
+@section('header', 'Control Situs Inggris Pasca Ar-Raniry')
 
 @section('content')
 <div class="space-y-8">

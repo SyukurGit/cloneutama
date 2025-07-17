@@ -41,8 +41,8 @@
             <div class="mb-6 sm:mb-0">
                 <h4 class="font-semibold text-white tracking-wider uppercase mb-3 sm:mb-4 text-sm">Institutions</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="flex items-start gap-2 hover:text-white transition-colors"><span class="mt-1 flex-shrink-0">></span> <span>Institute for Research and Community Service (LP2M)</span></a></li>
-                    <li><a href="#" class="flex items-start gap-2 hover:text-white transition-colors"><span class="mt-1 flex-shrink-0">></span> <span>Institute for Quality Assurance (LPM)</span></a></li>
+                    <li><a href="http://lp2m.uin.ar-raniry.ac.id/" class="flex items-start gap-2 hover:text-white transition-colors"><span class="mt-1 flex-shrink-0">></span> <span>Institute for Research and Community Service (LP2M)</span></a></li>
+                    <li><a href="http://lpm.uin.ar-raniry.ac.id/index.php/id" class="flex items-start gap-2 hover:text-white transition-colors"><span class="mt-1 flex-shrink-0">></span> <span>Institute for Quality Assurance (LPM)</span></a></li>
                 </ul>
             </div>
 
@@ -50,12 +50,12 @@
             <div class="mb-6 sm:mb-0">
                 <h4 class="font-semibold text-white tracking-wider uppercase mb-3 sm:mb-4 text-sm">Service Units</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">○ Library</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Printing and Publishing</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Business Development Centre</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Language Development Centre</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Ma'had Al Jamiah and Dormitory</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Information Technology and Data Centre (PTIPD)</a></li>
+                    <li><a href="https://lib-pps.ar-raniry.ac.id/index.php?p=baca" class="hover:text-white transition-colors">○ Library</a></li>
+                    <li><a href="https://ar-raniry.ac.id/unit-kerja/percetakan/" class="hover:text-white transition-colors">○ Printing and Publishing</a></li>
+                    <li><a href="https://uin.ar-raniry.ac.id/index.php/id/pages/profil-pusat-bisnis-uin-ar-raniry" class="hover:text-white transition-colors">○ Business Development Centre</a></li>
+                    <li><a href="https://uin.ar-raniry.ac.id/index.php/id/pages/pusat-pengembangan-bahasa" class="hover:text-white transition-colors">○ Language Development Centre</a></li>
+                    <li><a href="https://mahad.ar-raniry.ac.id/" class="hover:text-white transition-colors">○ Ma'had Al Jamiah and Dormitory</a></li>
+                    <li><a href="http://ict.uin.ar-raniry.ac.id/" class="hover:text-white transition-colors">○ Information Technology and Data Centre (PTIPD)</a></li>
                 </ul>
             </div>
 
@@ -63,10 +63,10 @@
             <div class="mb-6 sm:mb-0">
                 <h4 class="font-semibold text-white tracking-wider uppercase mb-3 sm:mb-4 text-sm">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">○ SIAKAD</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ OPAC</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Repository</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">○ Accreditation</a></li>
+                    <li><a href="https://uinarraniry.siakadcloud.com/siakad/home" class="hover:text-white transition-colors">○ SIAKAD</a></li>
+                    <li><a href="https://opac.ar-raniry.ac.id/" class="hover:text-white transition-colors">○ OPAC</a></li>
+                    <li><a href="https://repository.ar-raniry.ac.id/" class="hover:text-white transition-colors">○ Repository</a></li>
+                    <li><a href="https://ar-raniry.ac.id/tentang-uinar/akreditasi/" class="hover:text-white transition-colors">○ Accreditation</a></li>
                 </ul>
             </div>
 

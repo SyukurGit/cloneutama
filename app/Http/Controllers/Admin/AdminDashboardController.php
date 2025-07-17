@@ -31,4 +31,9 @@ class AdminDashboardController extends Controller
             'leadershipCount' => $leadershipCount,
         ]);
     }
+
+    public function about()
+    {
+        return view('admin.about');
+    }
 }

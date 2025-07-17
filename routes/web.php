@@ -80,4 +80,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('trix/attachment', [TrixAttachmentController::class, 'store'])->name('trix.attachment.store');
     Route::delete('trix/attachment', [TrixAttachmentController::class, 'destroy'])->name('trix.attachment.destroy');
 
+ Route::get('/about', [AdminDashboardController::class, 'about'])->name('about');
+
 });

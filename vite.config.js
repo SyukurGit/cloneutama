@@ -20,20 +20,20 @@ export default defineConfig({
 // import laravel from 'laravel-vite-plugin';
 
 // export default defineConfig({
+//     server: {
+//         host: '0.0.0.0',
+//         port: 5173,
+//         strictPort: true,
+//     },
 //     plugins: [
 //         laravel({
 //             input: ['resources/css/app.css', 'resources/js/app.js'],
 //             refresh: true,
 //         }),
 //     ],
-//     // --- BLOK INI WAJIB ADA UNTUK NGROK ---
-//     server: {
-//         host: '0.0.0.0',
-//         hmr: {
-//             host: '43ae-103-187.ngrok-free.app' // <<< GANTI DENGAN URL NGROK ANDA
-//         }
-//     }
 // });
+
+
 
 
 

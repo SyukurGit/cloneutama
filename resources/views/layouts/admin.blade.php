@@ -57,6 +57,7 @@
                         ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users', 'role' => 'superadmin'],
                         ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],
                         ['route' => 'admin.users.index', 'label' => 'Setting Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],
+                        ['route' => 'admin.about', 'label' => 'Tentang Panel Ini', 'icon' => 'fa-info-circle', 'role' => 'any'],
                     ];
                 @endphp
 
