@@ -15,6 +15,8 @@ export default {
         customblue: '#239B9E',
         primary: '#135DFB',
         customred: '#CC191A',
+      'footer-dark': '#404044',
+
       },
     },
   },

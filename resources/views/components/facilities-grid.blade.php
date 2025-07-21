@@ -13,7 +13,7 @@
     ];
 @endphp
 
-<section class="bg-gray-100 py-16 md:py-24">
+<section class="bg-white py-16 md:py-24">
     <div class="container mx-auto px-6">
         {{-- Judul Seksi --}}
         <div class="flex items-center mb-12">

@@ -57,7 +57,7 @@
                     {{-- Tombol "Lihat Semua Berita" untuk Tampilan Desktop --}}
                     <div class="hidden lg:flex justify-end mt-6">
                         <a href="{{ route('news.index') }}" class="bg-red-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm">
-                            Lihat Semua Berita &rarr;
+                            View All News &rarr;
                         </a>
                     </div>
                 </div>

@@ -20,15 +20,17 @@
     {{-- Memanggil komponen Fitur Utama --}}
     <x-key-features/>
 
-    {{-- Memanggil komponen Sambutan Direktur --}}
-    <x-director-greeting/>
+    {{-- Memanggil komponen Berita Terbaru --}}
+    <x-latest-news :newsItems="$newsItems" />
     
     {{-- Memanggil komponen Program Studi --}}
     <x-study-programs/>
 
-    {{-- Memanggil komponen Berita Terbaru --}}
-    <x-latest-news :newsItems="$newsItems" />
+    {{-- Memanggil komponen Sambutan Direktur --}}
+    <x-director-greeting/>
 
+    
+{{-- fasilitas --}}
     <x-facilities-grid/>
 
 <x-alumni-testimonials :testimonials="$testimonials" />
