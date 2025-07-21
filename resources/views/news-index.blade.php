@@ -19,7 +19,7 @@
                 {{ $activeTag ? $activeTag->name_en : 'News' }}
             </h1>
             <p class="mt-2 text-lg text-gray-600">
-                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from the Ar-Raniry Postgraduate School.' }}
+                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from Ar-Raniry Postgraduate School.' }}
             </p>
         </div>
 

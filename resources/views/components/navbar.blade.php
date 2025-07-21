@@ -149,7 +149,7 @@
             <a href="https://pps.ar-raniry.ac.id/kpm-singkil" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.service') }}</a>
             <a href="https://pps.ar-raniry.ac.id/penelitian/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.research') }}</a>
             <a href="https://pps.ar-raniry.ac.id/gugus-penjaminan-mutu/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.quality') }}</a>
-            <a href="https://pps.ar-raniry.ac.id/category/akademik/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.news') }}</a>
+            <a href="http://cloneutama.test/berita" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.news') }}</a>
         </div>
     </div>
 </nav>

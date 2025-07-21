@@ -1,7 +1,7 @@
 @php
     // Data untuk gambar fasilitas (tidak berubah)
     $facilities = [
-        ['image' => 'ruangdoktor.jpg', 'text_key' => 'facilities ruang'],
+        ['image' => 'ruangdoktor.jpg', 'text_key' => 'facilities.items.0'],
         ['image' => 'default-news2.png', 'text_key' => 'facilities.items.1'],
         ['image' => 'fasilitas-3.jpg', 'text_key' => 'facilities.items.2'],
         ['image' => 'fasilitas-4.jpg', 'text_key' => 'facilities.items.3'],
@@ -13,7 +13,7 @@
     ];
 @endphp
 
-<section class="bg-customwhite: '#FCFEFE', py-16 md:py-24">
+<section class="bg-gray-100 py-16 md:py-24">
     <div class="container mx-auto px-6">
         {{-- Judul Seksi --}}
         <div class="flex items-center mb-12">
@@ -33,9 +33,13 @@
                                 <div class="w-full flex-shrink-0">
                                     <div class="relative rounded-lg overflow-hidden group shadow-lg mx-2">
                                         <img src="{{ asset('images/' . $facility['image']) }}" alt="{{ __($facility['text_key']) }}" class="w-full h-48 object-cover">
-                                        <div class="absolute inset-0 bg-black opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-                                        <div class="absolute top-3 left-0">
-                                            <div class="bg-gray-800 backdrop-blur-sm text-white px-4 py-2" style="clip-path: polygon(0 0, 100% 0, 93% 50%, 100% 100%, 0 100%);">
+                                        <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+                                        
+                                        {{-- =============================================== --}}
+                                        {{--        INI LABEL BARU UNTUK TAMPILAN MOBILE       --}}
+                                        {{-- =============================================== --}}
+                                        <div class="absolute top-0 left-0">
+                                            <div class="bg-red-600 bg-opacity-80 backdrop-blur-sm text-white px-4 py-2 rounded-br-lg shadow-md">
                                                 <h3 class="font-bold text-sm">{{ __($facility['text_key']) }}</h3>
                                             </div>
                                         </div>
@@ -47,14 +51,10 @@
                         
                         {{-- Navigation Buttons --}}
                         <button id="prevBtn" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-60 text-white p-3 rounded-full hover:bg-opacity-80 transition-all z-10">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
                         <button id="nextBtn" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-60 text-white p-3 rounded-full hover:bg-opacity-80 transition-all z-10">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                         
                         {{-- Dots Indicator --}}
@@ -70,16 +70,15 @@
                 <div class="hidden md:grid grid-cols-3 gap-4 justify-items-center">
                     @foreach ($facilities as $facility)
                     <div class="relative rounded-lg overflow-hidden group shadow-lg w-full max-w-xs md:max-w-md lg:max-w-lg">
-                        {{-- Gambar Latar --}}
                         <img src="{{ asset('images/' . $facility['image']) }}" alt="{{ __($facility['text_key']) }}" class="w-full h-32 md:h-40 lg:h-44 object-cover">
-                        
-                        {{-- Overlay Gelap --}}
-                        <div class="absolute inset-0 bg-black opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-black opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
 
-                        {{-- Teks Overlay yang Sudah Diperbaiki --}}
-                        <div class="absolute top-3 md:top-4 left-0">
-                            <div class="bg-gray-800 backdrop-blur-sm text-white px-4 py-2 md:px-5 md:py-2" style="clip-path: polygon(0 0, 100% 0, 93% 50%, 100% 100%, 0 100%);">
-                                <h3 class="font-bold text-sm md:text-lg lg:text-xl">{{ __($facility['text_key']) }}</h3>
+                        {{-- =============================================== --}}
+                        {{--       INI LABEL BARU UNTUK TAMPILAN DESKTOP     --}}
+                        {{-- =============================================== --}}
+                        <div class="absolute top-0 left-0">
+                            <div class="bg-red-600 bg-opacity-100 backdrop-blur-sm text-white px-5 py-2 rounded-br-lg shadow-md">
+                                <h3 class="font-bold text-sm md:text-base">{{ __($facility['text_key']) }}</h3>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,7 @@
             </div>
         </div>
 
-        {{-- Carousel JavaScript --}}
+        {{-- Carousel JavaScript (Tidak Diubah) --}}
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const carousel = document.getElementById('carousel');
@@ -168,7 +167,5 @@
                 startAutoPlay();
             });
         </script>
-            </div>
-        </div>
     </div>
 </section>
