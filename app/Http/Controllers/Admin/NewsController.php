@@ -11,26 +11,20 @@ use Illuminate\Support\Facades\Gate;
 
 class NewsController extends Controller
 {
-    // Method `index` akan diubah secara keseluruhan
+    // Method index tidak diubah
     public function index(Request $request)
     {
         Gate::authorize('manage-news');
-
-        // Mengambil semua tag untuk filter dropdown
         $tags = Tag::all();
-
-        // Memulai query builder
         $query = News::query()->with('tags');
 
-        // 1. Logika untuk Sorting (Terbaru/Lama)
-        $sort = $request->input('sort', 'terbaru'); // Default 'terbaru'
+        $sort = $request->input('sort', 'terbaru');
         if ($sort === 'terbaru') {
             $query->latest('published_at');
         } else {
             $query->oldest('published_at');
         }
 
-        // 2. Logika untuk Filter berdasarkan Tags
         $selectedTags = $request->input('tags', []);
         if (!empty($selectedTags)) {
             $query->whereHas('tags', function ($q) use ($selectedTags) {
@@ -38,29 +32,23 @@ class NewsController extends Controller
             });
         }
         
-        // 3. Logika untuk Pencarian
         $search = $request->input('search');
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%');
         }
 
-        // 4. Pagination
         $newsItems = $query->paginate(12)->appends($request->query());
 
-        // Mengirim data ke view
         return view('admin.berita.index', [
             'newsItems' => $newsItems,
             'tags' => $tags,
-            'selectedTags' => $selectedTags, // Untuk menandai checkbox yang aktif
-            'sort' => $sort, // Untuk menandai urutan yang aktif
-            'search' => $search // Untuk menampilkan query pencarian
+            'selectedTags' => $selectedTags,
+            'sort' => $sort,
+            'search' => $search
         ]);
     }
 
-    // Method lainnya (create, store, edit, dll.) tetap sama ...
-    // ...
-    // Pastikan method lain tidak diubah, hanya method index saja.
-
+    // Method create tidak diubah
     public function create()
     {
         Gate::authorize('manage-news');
@@ -87,10 +75,15 @@ class NewsController extends Controller
             'tags' => 'nullable|array'
         ]);
 
+        // ===============================================
+        //           PENAMBAHAN KEAMANAN XSS
+        // ===============================================
+        $validatedData['content'] = clean($request->input('content'));
+
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('images', 'public');
         } else {
-            $validatedData['image'] = 'images/default-news.jpg'; //ini ubah gambar default berita
+            $validatedData['image'] = 'images/default-news.jpg';
         }
 
         $news = News::create($validatedData);
@@ -109,6 +102,7 @@ class NewsController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil disimpan!');
     }
 
+    // Method edit tidak diubah
     public function edit(News $beritum)
     {
         Gate::authorize('manage-news');
@@ -136,8 +130,13 @@ class NewsController extends Controller
             'tags' => 'nullable|array'
         ]);
 
+        // ===============================================
+        //           PENAMBAHAN KEAMANAN XSS
+        // ===============================================
+        $validatedData['content'] = clean($request->input('content'));
+
         if ($request->hasFile('image')) {
-            if ($beritum->image && $beritum->image !== 'images/default-news.jpg') { // ubah default berita gambar
+            if ($beritum->image && $beritum->image !== 'images/default-news.jpg') {
                 Storage::disk('public')->delete($beritum->image);
             }
             $validatedData['image'] = $request->file('image')->store('images', 'public');
@@ -159,6 +158,7 @@ class NewsController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
     
+    // Method destroy tidak diubah
     public function destroy(News $beritum)
     {
         Gate::authorize('manage-news');
@@ -173,6 +173,7 @@ class NewsController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 
+    // Method uploadImage tidak diubah
     public function uploadImage(Request $request)
     {
         $request->validate([
