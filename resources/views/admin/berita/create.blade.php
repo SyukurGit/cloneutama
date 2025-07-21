@@ -21,6 +21,8 @@
                     {{-- Gambar Utama --}}
                     <div>
                         <label for="image" class="block text-sm font-semibold text-gray-800 mb-2">Gambar Utama Berita</label>
+                            <p class="text-xs text-gray-500 mb-2">Untuk hasil terbaik, unggah gambar dengan orientasi lanskap (melebar).</p>
+
                         <div class="relative">
                             <input type="file" name="image" id="image" class="hidden" accept="image/*" onchange="previewImage(this)">
                             <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">

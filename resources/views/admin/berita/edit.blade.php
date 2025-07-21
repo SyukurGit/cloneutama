@@ -22,6 +22,8 @@
                     {{-- Gambar Utama --}}
                     <div>
                         <label for="image" class="block text-sm font-semibold text-gray-800 mb-2">Ganti Gambar Utama Berita</label>
+                            <p class="text-xs text-gray-500 mb-2">Untuk hasil terbaik, unggah gambar dengan orientasi lanskap (melebar).</p>
+
                          <input type="hidden" name="remove_image" id="remove_image_input" value="0">
                         <div class="relative">
                             <input type="file" name="image" id="image" class="hidden" accept="image/*" onchange="previewImage(this)">

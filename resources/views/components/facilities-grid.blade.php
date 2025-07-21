@@ -1,8 +1,8 @@
 @php
     // Data untuk gambar fasilitas (tidak berubah)
     $facilities = [
-        ['image' => 'ruangdoktor.jpg', 'text_key' => 'facilities.items.0'],
-        ['image' => 'fasilitas-2.jpg', 'text_key' => 'facilities.items.1'],
+        ['image' => 'ruangdoktor.jpg', 'text_key' => 'facilities ruang'],
+        ['image' => 'default-news2.png', 'text_key' => 'facilities.items.1'],
         ['image' => 'fasilitas-3.jpg', 'text_key' => 'facilities.items.2'],
         ['image' => 'fasilitas-4.jpg', 'text_key' => 'facilities.items.3'],
         ['image' => 'fasilitas-5.jpg', 'text_key' => 'facilities.items.4'],

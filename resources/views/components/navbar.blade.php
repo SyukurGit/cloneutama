@@ -71,7 +71,7 @@
                 <a href="https://pps.ar-raniry.ac.id/kpm-singkil" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">{{ __('db.navbar.service') }}</a>
                 <a href="https://pps.ar-raniry.ac.id/penelitian/" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">{{ __('db.navbar.research') }}</a>
                 <a href="https://pps.ar-raniry.ac.id/gugus-penjaminan-mutu/" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">{{ __('db.navbar.quality') }}</a>
-                <a href="https://pps.ar-raniry.ac.id/category/akademik/" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">{{ __('db.navbar.news') }}</a>
+                <a href="http://cloneutama.test/berita" class="text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">{{ __('db.navbar.news') }}</a>
             </div>
 
             {{-- Tombol Mobile & Pilihan Bahasa --}}

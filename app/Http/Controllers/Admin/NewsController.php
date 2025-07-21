@@ -90,7 +90,7 @@ class NewsController extends Controller
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('images', 'public');
         } else {
-            $validatedData['image'] = 'images/default-news.jpg';
+            $validatedData['image'] = 'images/default-news.jpg'; //ini ubah gambar default berita
         }
 
         $news = News::create($validatedData);
@@ -137,7 +137,7 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($beritum->image && $beritum->image !== 'images/default-news.jpg') {
+            if ($beritum->image && $beritum->image !== 'images/default-news.jpg') { // ubah default berita gambar
                 Storage::disk('public')->delete($beritum->image);
             }
             $validatedData['image'] = $request->file('image')->store('images', 'public');

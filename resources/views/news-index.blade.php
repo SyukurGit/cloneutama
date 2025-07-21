@@ -6,6 +6,7 @@
     <title>News - {{ config('app.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="icon" href="{{ asset('images/logouin.png') }}" type="image/png">
 </head>
 <body class="bg-gray-50 font-sans">
 
@@ -18,7 +19,7 @@
                 {{ $activeTag ? $activeTag->name_en : 'News' }}
             </h1>
             <p class="mt-2 text-lg text-gray-600">
-                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from the Postgraduate School.' }}
+                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from the Ar-Raniry Postgraduate School.' }}
             </p>
         </div>
 
@@ -70,33 +71,35 @@
             </div>
 
             {{-- Right Column: Categories Sidebar --}}
-            <aside class="lg:col-span-1">
-                <div class="sticky top-24">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4">News Categories</h3>
-                        <ul class="space-y-2">
-                            {{-- Button to show all news --}}
-                            <li>
-                                <a href="{{ route('news.index') }}" 
-                                   class="block px-3 py-2 rounded-md text-sm font-medium transition-colors
-                                          {{ !$activeTag ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-100' }}">
-                                    All News
-                                </a>
-                            </li>
-                            
-                            @foreach($tags->where('slug', '!=', 'pascasarjana') as $tag)
-                                <li>
-                                    <a href="{{ route('news.index', ['tag' => $tag->slug]) }}"
-                                       class="block px-3 py-2 rounded-md text-sm font-medium transition-colors
-                                              {{ $activeTag && $activeTag->id == $tag->id ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-100' }}">
-                                        {{ $tag->name_en }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </aside>
+            {{-- Right Column: Categories Sidebar --}}
+<aside class="lg:col-span-1">
+    <div class="sticky top-24">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold text-gray-800 border-b pb-3 mb-4">News Categories</h3>
+            <ul class="space-y-2">
+                {{-- Button to show all news --}}
+                <li>
+                    <a href="{{ route('news.index') }}" 
+                       class="block px-3 py-2 rounded-md text-sm font-medium transition-colors
+                              {{ !$activeTag ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                        All News
+                    </a>
+                </li>
+                
+                {{-- PERUBAHAN DI BARIS INI --}}
+                @foreach($tags as $tag)
+                    <li>
+                        <a href="{{ route('news.index', ['tag' => $tag->slug]) }}"
+                           class="block px-3 py-2 rounded-md text-sm font-medium transition-colors
+                                  {{ $activeTag && $activeTag->id == $tag->id ? 'bg-red-600 text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            {{ $tag->name_en }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</aside>
         </div>
     </main>
     

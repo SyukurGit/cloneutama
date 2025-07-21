@@ -143,18 +143,18 @@ return [
         // --- Study Program List ---
         'programs' => [
             // Master's (S2)
-            's2_tafsir'            => 'Qur\'anic and Tafsir Studies [S2]',
-            's2_islamic_studies'   => 'Islamic Studies [S2]',
-            's2_islamic_education' => 'Islamic Education [S2]',
-            's2_family_law'        => 'Family Law [S2]',
-            's2_islamic_economics' => 'Islamic Economics [S2]',
-            's2_communication'     => 'Islamic Communication and Broadcasting [S2]',
-            's2_arabic_education'  => 'Arabic Language Education [S2]',
+           's2_tafsir'      => "Qur’anic and Tafsir Studies [Master's]",
+    's2_islamic_studies'    => "Islamic Studies [Master's]",
+    's2_islamic_education'  => "Islamic Education [Master's]",
+    's2_family_law'         => "Family Law [Master's]",
+    's2_islamic_economics'  => "Islamic Economics [Master's]",
+    's2_communication'      => "Islamic Communication and Broadcasting [Master's]",
+    's2_arabic_education'   => "Arabic Language Education [Master's]",
             // Doctorate (S3)
-            's3_islamic_economics' => 'Islamic Economics [S3]',
-            's3_islamic_studies'   => 'Islamic Studies [S3]',
-            's3_islamic_education' => 'Islamic Education [S3]',
-            's3_fiqh'              => 'Modern Fiqh [S3]',
+            's3_islamic_economics' => 'Islamic Economics [Doctoral ]',
+            's3_islamic_studies'   => 'Islamic Studies [Doctoral ]',
+            's3_islamic_education' => 'Islamic Education [Doctoral ]',
+            's3_fiqh'              => 'Modern Fiqh [Doctoral ]',
         ],
     ], // <<< penutup array 'study_programs'
 
