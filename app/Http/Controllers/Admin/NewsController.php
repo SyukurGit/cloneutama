@@ -158,20 +158,61 @@ class NewsController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
     
-    // Method destroy tidak diubah
-    public function destroy(News $beritum)
+    // Method destroy 
+     public function destroy(News $beritum)
     {
         Gate::authorize('manage-news');
-
-        if ($beritum->image && $beritum->image !== 'images/default-news.jpg') {
-            Storage::disk('public')->delete($beritum->image);
-        }
-        
-        $beritum->tags()->detach();
-        $beritum->delete();
-
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
+        $beritum->delete(); // Ini akan otomatis menjadi soft delete
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dipindahkan ke tong sampah.');
     }
+
+// trash logic
+
+ public function trash(Request $request)
+    {
+        Gate::authorize('manage-news');
+        // Ambil hanya berita yang ada di tong sampah
+        $query = News::onlyTrashed()->with('tags');
+        $search = $request->input('search');
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+        $trashedItems = $query->latest('deleted_at')->paginate(12)->appends($request->query());
+        return view('admin.berita.trash', compact('trashedItems', 'search'));
+    }
+
+    public function restore($id)
+    {
+        Gate::authorize('manage-news');
+        $news = News::onlyTrashed()->findOrFail($id);
+        $news->restore();
+        return redirect()->route('admin.berita.trash')->with('success', 'Berita berhasil dipulihkan.');
+    }
+
+    public function forceDelete($id)
+    {
+        Gate::authorize('manage-news');
+        $news = News::onlyTrashed()->findOrFail($id);
+        // Hapus file gambar jika ada sebelum hapus permanen
+        if ($news->image && $news->image !== 'images/default-news.jpg') {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($news->image);
+        }
+        $news->forceDelete();
+        return redirect()->route('admin.berita.trash')->with('success', 'Berita berhasil dihapus permanen.');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Method uploadImage tidak diubah
     public function uploadImage(Request $request)

@@ -16,11 +16,11 @@
                 <input type="email" name="email" id="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
             </div>
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password (8 kata minimal)</label>
                 <input type="password" name="password" id="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
             </div>
             <div>
-                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password (8 kata minimal)</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
             </div>
             <div class="flex justify-end pt-4">

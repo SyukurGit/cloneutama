@@ -6,10 +6,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity; // <-- TAMBAHKAN INI
+use Spatie\Activitylog\LogOptions;   
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, LogsActivity;
+
+
+    // TAMBAHKAN METHOD INI
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['name', 'email', 'role'])
+            ->setDescriptionForEvent(fn(string $eventName) => "Akun '{$this->name}' telah di-{$eventName}");
+    }
 
     /**
      * The attributes that are mass assignable.

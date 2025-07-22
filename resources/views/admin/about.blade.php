@@ -18,6 +18,33 @@
         </div>
     </div>
 
+ <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+        <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4 flex items-center gap-3">
+            <i class="fas fa-database text-red-600"></i>
+            Backup Database
+        </h3>
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <p class="text-gray-700 text-sm leading-relaxed">
+                Klik tombol di samping untuk mengunduh seluruh database website dalam format <code class="bg-gray-200 text-xs px-1.5 py-0.5 rounded">.sql</code>. <br>
+                Simpan file ini di tempat yang aman sebagai cadangan.
+            </p>
+            <a href="{{ route('admin.backup.database') }}" class="w-full md:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-download mr-2"></i>
+                Unduh Database (.sql)
+            </a>
+        </div>
+        @if(session('error'))
+            <div class="mt-4 bg-red-100 border border-red-300 text-red-800 text-sm p-3 rounded-md">
+                <strong>Error:</strong> {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
+
+
+
+
+
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
         <h3 class="text-lg font-bold text-gray-800 border-b pb-3 mb-4 flex items-center gap-3">
             <i class="fas fa-info text-red-600"></i>
@@ -95,9 +122,9 @@
         <div class="space-y-4 text-gray-700 text-sm leading-relaxed">
             <p>Untuk memudahkan pengelolaan, sistem tagging berita memiliki logika khusus untuk memastikan setiap berita memiliki setidaknya satu kategori.</p>
             <ul class="list-disc list-inside space-y-2 pl-2">
-                <li>Jika admin **tidak memilih satupun kategori** saat membuat atau mengedit berita, sistem akan secara otomatis menetapkan tag default, yaitu <strong class="font-semibold text-gray-800">#Postgraduate</strong>.</li>
-                <li>Jika admin **memilih satu atau lebih kategori** (misalnya: #Islamic_Economics), maka tag #Postgraduate <strong class="font-semibold text-red-600">TIDAK AKAN</strong> ditambahkan secara otomatis.</li>
-                <li>Admin tetap bisa memilih tag #Postgraduate secara manual bersamaan dengan tag lainnya jika memang relevan.</li>
+                <li>Jika admin **tidak memilih satupun kategori** saat membuat atau mengedit berita, sistem akan secara otomatis menetapkan tag default, yaitu <strong class="font-semibold text-gray-800">#Ar-Raniry Graduate School Activities</strong>.</li>
+                <li>Jika admin **memilih satu atau lebih kategori** (misalnya: #Islamic_Economics), maka tag #Ar-Raniry Graduate School Activities <strong class="font-semibold text-red-600">TIDAK AKAN</strong> ditambahkan secara otomatis.</li>
+                <li>Admin tetap bisa memilih tag #Ar-Raniry Graduate School Activities secara manual bersamaan dengan tag lainnya jika memang relevan.</li>
             </ul>
             <p>Logika ini diimplementasikan di dalam method <code class="bg-gray-200 text-xs px-1.5 py-0.5 rounded">store()</code> dan <code class="bg-gray-200 text-xs px-1.5 py-0.5 rounded">update()</code> pada file <code class="bg-gray-200 text-xs px-1.5 py-0.5 rounded">app/Http/Controllers/Admin/NewsController.php</code>.</p>
         </div>

@@ -5,10 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity; // <-- TAMBAHKAN INI
+use Spatie\Activitylog\LogOptions;
 
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity, SoftDeletes;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['title', 'author', 'status'])
+            ->setDescriptionForEvent(fn(string $eventName) => "Berita '{$this->title}' telah di-{$eventName}");
+    }
 
     protected $fillable = [
         'title',

@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\TrixAttachmentController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\NewsPageController;
 use App\Http\Controllers\Admin\InfoSectionController; 
+use App\Http\Controllers\Admin\BackupController;
+use App\Http\Controllers\Admin\ActivityLogController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,14 @@ Route::get('lang/{locale}', [LocalizationController::class, 'setLang'])->name('l
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/berita', [NewsPageController::class, 'index'])->name('news.index');
 Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show');
+
+
+
+Route::get('/run-scheduler', function() {
+    \Illuminate\Support\Facades\Artisan::call('schedule:run');
+    return 'Scheduler executed!';
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +63,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/about', [AdminDashboardController::class, 'about'])->name('about');
 
     // 2. Manajemen Berita (CRUD)
-    Route::resource('berita', NewsController::class);
-    Route::post('/upload-image', [NewsController::class, 'uploadImage'])->name('image.upload');
+    Route::get('berita/trash', [NewsController::class, 'trash'])->name('berita.trash');
+Route::put('berita/{id}/restore', [NewsController::class, 'restore'])->name('berita.restore');
+Route::delete('berita/{id}/force-delete', [NewsController::class, 'forceDelete'])->name('berita.forceDelete');
+Route::resource('berita', NewsController::class);
 
     // 3. Manajemen Trix Editor Attachments
     Route::post('trix/attachment', [TrixAttachmentController::class, 'store'])->name('trix.attachment.store');
@@ -85,5 +98,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         // 10.section info
         Route::get('/info-section', [InfoSectionController::class, 'edit'])->name('info_section.edit');
 Route::put('/info-section', [InfoSectionController::class, 'update'])->name('info_section.update');
+
+        Route::get('/backup/database', [BackupController::class, 'downloadDatabase'])->name('backup.database');
+
+
+        Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity_log.index');
+
+
     });
 });
