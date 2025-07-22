@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TrixAttachmentController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\NewsPageController;
+use App\Http\Controllers\Admin\InfoSectionController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -80,5 +81,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         // 9. Manajemen Akun (CRUD)
         Route::resource('users', UserManagementController::class)->except(['show']);
         Route::put('users/{user}/reset-password', [UserManagementController::class, 'resetPassword'])->name('users.reset-password');
+
+        // 10.section info
+        Route::get('/info-section', [InfoSectionController::class, 'edit'])->name('info_section.edit');
+Route::put('/info-section', [InfoSectionController::class, 'update'])->name('info_section.update');
     });
 });

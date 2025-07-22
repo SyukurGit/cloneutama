@@ -29,6 +29,10 @@
     {{-- Memanggil komponen Sambutan Direktur --}}
     <x-director-greeting/>
 
+    {{-- info section --}}
+<x-info-section/>
+
+
     
 {{-- fasilitas --}}
     <x-facilities-grid/>

@@ -85,9 +85,9 @@
     {{-- Copyright & Developer Credit --}}
     <div class="bg-black bg-opacity-20">
         <div class="container mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center text-sm">
-            <p class="mb-4 md:mb-0 text-center md:text-left">&copy; {{ date('Y') }} Ar-Raniry Postgraduate</p>
-            <a href="https://github.com/SyukurGit" target="_blank" class="text-center text-white hover:underline">
-                &lt;&gt; Developer Web Pasca
+            <p class="mb-4 md:mb-0 text-center md:text-left">&copy; {{ date('Y') }} Ar-Raniry Graduate School Program</p>
+            <a href="https://github.com/SyukurGit" target="_blank" class="text-center hover:underline">
+                &lt;&gt;  Web Developer Team
             </a>
         </div>
     </div>

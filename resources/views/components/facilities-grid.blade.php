@@ -1,15 +1,15 @@
 @php
     // Data untuk gambar fasilitas (tidak berubah)
     $facilities = [
-        ['image' => 'ruangdoktor.jpg', 'text_key' => 'facilities.items.0'],
-        ['image' => 'default-news2.png', 'text_key' => 'facilities.items.1'],
-        ['image' => 'fasilitas-3.jpg', 'text_key' => 'facilities.items.2'],
-        ['image' => 'fasilitas-4.jpg', 'text_key' => 'facilities.items.3'],
-        ['image' => 'fasilitas-5.jpg', 'text_key' => 'facilities.items.4'],
-        ['image' => 'fasilitas-6.jpg', 'text_key' => 'facilities.items.5'],
-        ['image' => 'fasilitas-7.jpg', 'text_key' => 'facilities.items.6'],
-        ['image' => 'fasilitas-8.jpg', 'text_key' => 'facilities.items.7'],
-        ['image' => 'fasilitas-9.jpg', 'text_key' => 'facilities.items.8'],
+        ['image' => 'ruangdoktorr.jpg', 'text_key' => 'Doctoral Lecture Room'],
+        ['image' => 'rangkanginspirasi.jpg', 'text_key' => 'Inspiration Pavilion'],
+        ['image' => 'pusatinovasi.jpg', 'text_key' => 'Innovation Center'],
+        ['image' => 'wisma.jpg', 'text_key' => 'Dormitory'],
+        ['image' => 'lobikreatif.jpg', 'text_key' => 'Creative Lobby'],
+        ['image' => 'perpus.jpg', 'text_key' => 'Library'],
+        ['image' => 'akademik.jpg', 'text_key' => 'Academic & General Affairs Office'],
+        ['image' => 'ruangpodcast.jpg', 'text_key' => 'Podcast Studio'],
+        ['image' => 'labkomputer.jpg', 'text_key' => 'Computer Laboratory'],
     ];
 @endphp
 

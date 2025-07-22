@@ -54,6 +54,7 @@
                         ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop', 'role' => 'superadmin'],
                         ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap', 'role' => 'superadmin'],
                         ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie', 'role' => 'superadmin'],
+                        ['route' => 'admin.info_section.edit', 'label' => 'Info Section', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
                         ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users', 'role' => 'superadmin'],
                         ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],
                         ['route' => 'admin.users.index', 'label' => 'Setting Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],

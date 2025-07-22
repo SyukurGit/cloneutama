@@ -110,7 +110,7 @@
         </h3>
         <div class="text-gray-700 text-sm">
             <p>Website dan Panel Admin ini hanya dikembangkan oleh : 
-                <a href="https://github.com/SyukurGit" target="_blank" class="font-bold text-red-600 hover:underline">Syukur (Teknologi Informasi 22 Saintek)</a>.
+                <a href="https://github.com/SyukurGit" target="_blank" class="font-bold text-red-600 hover:underline">Syukur (Teknologi Informasi 22)</a>.
             </p>
             <p class="mt-1">Jika anda menemukan Bug atau pertanyaan teknis lebih lanjut, silakan hubungi developer.</p>
         </div>
