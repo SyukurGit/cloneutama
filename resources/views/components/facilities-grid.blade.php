@@ -4,7 +4,7 @@
         ['image' => 'ruangdoktorr.jpg', 'text_key' => 'Doctoral Lecture Room'],
         ['image' => 'rangkanginspirasi.jpg', 'text_key' => 'Inspiration Pavilion'],
         ['image' => 'pusatinovasi.jpg', 'text_key' => 'Innovation Center'],
-        ['image' => 'wisma.jpg', 'text_key' => 'Dormitory'],
+        ['image' => 'wisma.jpg', 'text_key' => 'Guest House'],
         ['image' => 'lobikreatif.jpg', 'text_key' => 'Creative Lobby'],
         ['image' => 'perpus.jpg', 'text_key' => 'Library'],
         ['image' => 'akademik.jpg', 'text_key' => 'Academic & General Affairs Office'],

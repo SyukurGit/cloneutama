@@ -19,9 +19,33 @@
                 {{ $activeTag ? $activeTag->name_en : 'News' }}
             </h1>
             <p class="mt-2 text-lg text-gray-600">
-                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from Ar-Raniry Postgraduate School.' }}
+                {{ $activeTag ? 'Showing news in category:' : 'Find the latest news and information from Ar-Raniry Graduate School Program.' }}
             </p>
         </div>
+
+
+
+
+<div class="mb-8">
+        <form action="{{ route('news.index') }}" method="GET" class="max-w-xl mx-auto">
+            <div class="relative">
+                <input type="search" name="search" value="{{ $searchTerm ?? '' }}" 
+                       placeholder="Search for news articles..." 
+                       class="w-full pl-5 pr-12 py-3 border-2 border-gray-300 rounded-full shadow-sm focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-all">
+                <button type="submit" class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-red-600 rounded-r-full hover:bg-red-700 transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
@@ -52,7 +76,7 @@
                                     @endif
                                     
                                     <p class="text-xs text-gray-500 mt-auto">
-                                        By {{ $news->author }} &bull; {{ \Carbon\Carbon::parse($news->published_at)->translatedFormat('d M Y') }}
+                                         {{ $news->author }} &bull; {{ \Carbon\Carbon::parse($news->published_at)->translatedFormat('d M Y') }}
                                     </p>
                                 </div>
                             </div>
@@ -64,7 +88,7 @@
                         {{ $newsItems->withQueryString()->links() }}
                     </div>
                 @else
-                    <div class="text-center py-16 bg-white rounded-lg shadow-md">
+                     <div class="text-center py-16 bg-white rounded-lg shadow-md">
                         <p class="text-gray-500 text-lg">No news found in this category.</p>
                     </div>
                 @endif

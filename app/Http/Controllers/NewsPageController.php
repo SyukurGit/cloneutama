@@ -10,35 +10,45 @@ class NewsPageController extends Controller
 {
     public function index(Request $request)
     {
-        // 1. Ambil semua tag untuk ditampilkan sebagai filter
+        // 1. Ambil semua tag dan kata kunci pencarian dari request
         $tags = Tag::all();
         $activeTag = null;
+        $searchTerm = $request->input('search'); // Pindahkan ini ke atas
 
-        // 2. Query dasar untuk berita, diurutkan berdasarkan tanggal publikasi terbaru
+        // 2. Query dasar untuk berita
         $query = News::where('status', 'Posted')->latest('published_at');
 
-        // 3. Cek apakah ada permintaan filter berdasarkan tag di URL
+        // 3. Filter berdasarkan tag
         if ($request->has('tag')) {
             $tagSlug = $request->query('tag');
             $activeTag = Tag::where('slug', $tagSlug)->first();
 
-            // Jika tag yang diminta ada, filter berita berdasarkan tag tersebut
-            if ($activeTag && $activeTag->slug !== 'postgraduate') {
+            if ($activeTag) {
+                // Gunakan whereHas untuk memfilter berita yang memiliki tag tersebut
                 $query->whereHas('tags', function ($q) use ($tagSlug) {
                     $q->where('slug', $tagSlug);
                 });
             }
-            // Jika tag adalah 'postgraduate', tidak perlu filter tambahan (tampilkan semua)
         }
 
-        // 4. Eksekusi query dengan pagination (9 berita per halaman)
-        $news = $query->paginate(9);
+        // 4. Filter berdasarkan kata kunci pencarian
+        if ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('title', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('content', 'like', '%' . $searchTerm . '%');
+            });
+        }
 
-        // 5. Kirim data ke view
+        // 5. Eksekusi query dengan pagination
+        // withQueryString() akan otomatis membawa semua filter (tag & search) saat pindah halaman
+        $newsItems = $query->paginate(9)->withQueryString();
+
+        // 6. Kirim data ke view
         return view('news-index', [
-            'newsItems' => $news,
+            'newsItems' => $newsItems,
             'tags' => $tags,
-            'activeTag' => $activeTag
+            'activeTag' => $activeTag,
+            'searchTerm' => $searchTerm,
         ]);
     }
 }

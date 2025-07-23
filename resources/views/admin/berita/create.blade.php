@@ -34,7 +34,7 @@
                             </label>
                         </div>
                         <div id="image-preview" class="mt-4 hidden">
-                            <img id="preview-img" class="w-full h-48 object-cover rounded-lg shadow-md" alt="Preview">
+                            <img id="preview-img" class="w-full h-100 object-cover rounded-lg shadow-md" alt="Preview">
                             <button type="button" onclick="removeImage()" class="mt-2 text-red-500 hover:text-red-700 text-sm font-medium">Hapus Gambar</button>
                         </div>
                     </div>
@@ -59,8 +59,7 @@
                     <div class="space-y-5">
                         <div>
                             <label for="author" class="block text-sm font-semibold text-gray-800 mb-2">Nama Penulis</label>
-                            <input type="text" name="author" id="author" value="{{ old('author', Auth::user()->name) }}" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white" required>
-                        </div>
+<input type="text" name="author" id="author" value="{{ old('author', 'Admin') }}" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:border-red-500 focus:ring-2 focus:ring-red-200 bg-white" required>                        </div>
                         <div>
                             <label for="status" class="block text-sm font-semibold text-gray-800 mb-2">Status</label>
                             <select name="status" id="status" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 bg-white">
