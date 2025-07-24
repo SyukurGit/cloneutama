@@ -34,8 +34,7 @@
             {{-- MENU DESKTOP --}}
             <div class="hidden md:flex items-center space-x-4">
                 <a href="{{ route('dashboard') }}" class="px-3 py-2 rounded-md text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-red-600 font-bold' : 'text-gray-600 hover:text-red-600' }}">{{ __('db.navbar.home') }}</a>
-                <a href="https://pps.ar-raniry.ac.id/profil/sambutan-direktur/" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-red-600">{{ __('db.navbar.profile') }}</a>
-
+                <a href="{{ route('profile.index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-red-600">{{ __('db.navbar.profile') }}</a>
                 {{-- Dropdown Program Studi (di-klik) --}}
                 <div class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex items-center text-gray-600 hover:text-red-600 px-3 py-2 rounded-md text-sm font-medium">

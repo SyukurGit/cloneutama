@@ -28,6 +28,8 @@ Route::get('lang/{locale}', [LocalizationController::class, 'setLang'])->name('l
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/berita', [NewsPageController::class, 'index'])->name('news.index');
 Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show');
+Route::view('/profile', 'profile.index')->name('profile.index');
+
 
 
 
