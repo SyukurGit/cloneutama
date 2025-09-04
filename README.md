@@ -1,4 +1,3 @@
-web pascasarjana uin ar-raniry 
-
-
-link : en.pps.ar-raniry.ac.id
+<p align="center">
+  <a href="https://en.pps.ar-raniry.ac.id" target="_blank">Web Pascasarjana UIN Ar-Raniry</a>
+</p>
