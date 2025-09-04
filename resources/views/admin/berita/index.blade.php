@@ -68,10 +68,24 @@
                                 <button type="submit" class="bg-red-600 text-white text-sm font-semibold px-4 py-1.5 rounded-lg hover:bg-red-700">Terapkan</button>
                             </div>
                         </div>
-                    </div>
-                    <a href="{{ route('admin.berita.trash') }}" title="Tong Sampah" class="flex-shrink-0 p-2 h-full flex items-center rounded-lg bg-gray-200 text-gray-600 hover:bg-red-600 hover:text-white transition-colors">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
+
+                     </div>
+                    
+                    {{-- =============================================== --}}
+                    {{--    PERBAIKAN KONDISIONAL TOMBOL SAMPAH    --}}
+                    {{-- =============================================== --}}
+                    @can('isSuperAdmin')
+                        <a href="{{ route('admin.berita.trash') }}" title="Tong Sampah" class="flex-shrink-0 p-2 h-full flex items-center rounded-lg bg-gray-200 text-gray-600 hover:bg-red-600 hover:text-white transition-colors">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    @else
+                        <span title="Hanya Superadmin yang bisa mengakses" class="flex-shrink-0 p-2 h-full flex items-center rounded-lg bg-gray-100 text-gray-400 cursor-not-allowed">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    @endcan
+                    {{-- =============================================== --}}
+                    {{--              AKHIR BAGIAN PERBAIKAN               --}}
+                    {{-- =============================================== --}}
                 </div>
                 
                 <div class="flex items-center justify-end gap-2">

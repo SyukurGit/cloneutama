@@ -12,6 +12,7 @@
 <body class="bg-gray-50 font-sans">
 
     <x-navbar/>
+    
 
     <main x-data="{ activeTab: 'greeting' }">
         {{-- Header dengan Latar Belakang --}}
@@ -22,6 +23,13 @@
                     <span x-show="activeTab === 'greeting'">Director's Greeting</span>
                     <span x-show="activeTab === 'history'">History</span>
                     <span x-show="activeTab === 'vision'">Vision and Mission</span>
+                    <span x-show="activeTab === 'directors'">Directorate</span>
+                    <span x-show="activeTab === 'accreditation'">Accreditation</span>
+                    <span x-show="activeTab === 'structure'">Organizational Structure</span>
+                    <span x-show="activeTab === 'lecturers'">Experts and Homebase Lecturers</span>
+                    <span x-show="activeTab === 'teaching_staff'">Educational Staff</span>
+                    <span x-show="activeTab === 'facilities'">Graduate School Facilities</span>
+                    <span x-show="activeTab === 'cooperation'">Collaboration</span>
                     {{-- Tambahkan span lain untuk judul tab lainnya --}}
                 </h1>
                 <p class="text-gray-600">Home / Profile / <span x-text="activeTab.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())"></span></p>

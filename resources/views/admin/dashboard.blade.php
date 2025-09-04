@@ -53,7 +53,7 @@
         @can('isSuperAdmin')
             <p class="mt-2 text-red-100">Anda berada di pusat kendali situs. Gunakan menu navigasi di bawah untuk mengelola seluruh konten website Anda.</p>
         @else
-            <p class="mt-2 text-red-100">Anda hanya memiliki akses untuk mengelola semua konten yang berhubungan dengan berita saja.</p>
+            <p class="mt-2 text-red-100">Anda hanya memiliki akses untuk mengelola semua konten yang berhubungan dengan Berita saja dan beberapa Fitur dibatasi untuk anda.</p>
         @endcan
     </div>
 

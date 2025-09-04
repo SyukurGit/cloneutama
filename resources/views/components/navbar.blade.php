@@ -122,7 +122,7 @@
     <div x-show="mobileMenuOpen" class="md:hidden" x-transition style="display: none;">
         <div @click.away="mobileMenuOpen = false" class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('dashboard') ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-gray-50' }}">{{ __('db.navbar.home') }}</a>
-            <a href="https://pps.ar-raniry.ac.id/profil/sambutan-direktur/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.profile') }}</a>
+            <a href="{{ route('profile.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.profile') }}</a>
             
             <div x-data="{ open: false }">
                 <button @click="open = !open" class="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">

@@ -10,7 +10,7 @@ return [
     // =======================
     // General & Header
     // =======================
-    'title'           => 'Dashboard',
+    'title'           => 'Home',
     'navbar_brand'    => 'LOGOPASCASARJANA',
 
 
