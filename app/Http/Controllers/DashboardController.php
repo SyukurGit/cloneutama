@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Models\Leadership;
 use App\Models\Testimonial;
-use App\Models\InfoSection;
-use App\Models\Setting;
-use App\Models\Facility; // 1. IMPORT MODEL FACILITY
+use App\Models\Tag;
+use App\Models\Facility; // 1. TAMBAHKAN MODEL FACILITY
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -16,26 +16,59 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Mengambil semua settings dari database
-        $settings = Setting::all()->keyBy('key');
+        // Kode lama Anda (tetap dipertahankan)
+        $latestNews = News::with('tags')->latest('published_at')->take(4)->get();
+        $leaders = Leadership::orderBy('order')->get();
+        $testimonials = Testimonial::latest()->get();
 
-        // Mengambil data lain yang dibutuhkan untuk halaman utama
-        $testimonials = Testimonial::all();
-        $leaderships = Leadership::orderBy('order')->get();
-        $news = News::latest()->take(3)->get();
-        $infoSection = InfoSection::where('is_active', true)->first();
-        
-        // 2. AMBIL SEMUA DATA FASILITAS
-        $facilities = Facility::all();
+        // 2. TAMBAHKAN LOGIKA UNTUK MENGAMBIL DATA FASILITAS
+        $facilities = Facility::latest()->get();
 
-        // 3. KIRIM SEMUA DATA KE VIEW 'welcome'
-        return view('welcome', compact(
-            'settings',
-            'testimonials',
-            'leaderships',
-            'news',
-            'infoSection',
-            'facilities' // Pastikan variabel ini ditambahkan
-        ));
+        // 3. TAMBAHKAN VARIABEL $facilities KE DALAM ARRAY VIEW
+        return view('db', [
+            'newsItems'    => $latestNews,
+            'leaders'      => $leaders,
+            'testimonials' => $testimonials,
+            'facilities'   => $facilities, // <-- Data fasilitas ditambahkan di sini
+        ]);
+    }
+
+    /**
+     * ==========================================================
+     * METHOD LAMA ANDA UNTUK ARSIP BERITA (TIDAK DIUBAH)
+     * ==========================================================
+     */
+    public function newsIndex(Request $request)
+    {
+        $tags = Tag::all();
+        $activeTag = null;
+
+        $newsQuery = News::with('tags')->latest('published_at');
+
+        if ($request->has('tag')) {
+            $tagSlug = $request->input('tag');
+            $activeTag = Tag::where('slug', $tagSlug)->first();
+            if ($activeTag) {
+                $newsQuery->whereHas('tags', function ($query) use ($tagSlug) {
+                    $query->where('slug', $tagSlug);
+                });
+            }
+        }
+
+        $newsItems = $newsQuery->paginate(9)->withQueryString();
+
+        return view('news-index', [
+            'newsItems' => $newsItems,
+            'tags' => $tags,
+            'activeTag' => $activeTag,
+        ]);
+    }
+
+    /**
+     * Menampilkan detail berita. (TIDAK DIUBAH)
+     */
+    public function show(News $news)
+    {
+        return view('news-detail', ['news' => $news]);
     }
 }
