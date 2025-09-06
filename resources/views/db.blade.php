@@ -35,7 +35,9 @@
 
     
 {{-- fasilitas --}}
-    <x-facilities-grid/>
+    {{-- <x-facilities-grid/> --}}
+    <x-facilities-grid :facilities="$facilities" />
+
 
 <x-alumni-testimonials :testimonials="$testimonials" />
     {{-- <x-alumni-testimonials/> --}}

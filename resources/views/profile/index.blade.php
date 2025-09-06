@@ -160,36 +160,26 @@
         </div>
 
         {{-- fasilitas --}}
-         <div x-show="activeTab === 'facilities'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" style="display: none;">
-            @php
-                // Ambil data fasilitas yang sama persis seperti di komponen facilities.blade.php
-                $facilitiesData = [
-                    ['image' => 'ruangdoktorr.jpg', 'text_key' => 'Doctoral Lecture Room'],
-        ['image' => 'rangkanginspirasi.jpg', 'text_key' => 'Inspiration Pavilion'],
-        ['image' => 'pusatinovasi.jpg', 'text_key' => 'Innovation Center'],
-        ['image' => 'wisma.jpg', 'text_key' => 'Guest House'],
-        ['image' => 'lobikreatif.jpg', 'text_key' => 'Creative Lobby'],
-        ['image' => 'perpus.jpg', 'text_key' => 'Library'],
-        ['image' => 'akademik.jpg', 'text_key' => 'Academic & General Affairs Office'],
-        ['image' => 'ruangpodcast.jpg', 'text_key' => 'Podcast Studio'],
-        ['image' => 'labkomputer.jpg', 'text_key' => 'Computer Laboratory'],
-                ];
-            @endphp
+<div x-show="activeTab === 'facilities'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" style="display: none;">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Graduate School Facilities</h2>
 
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Graduate School Facilities</h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                @foreach($facilitiesData as $facility)
-                    <div class="relative group">
-                        <img src="{{ asset('images/' . $facility['image']) }}" alt="{{ __($facility['text_key']) }}" class="w-full h-32 md:h-40 object-cover rounded-lg shadow-md">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 rounded-lg"></div>
-                        <div class="absolute bottom-0 left-0 p-2">
-                            <h3 class="text-white text-xs md:text-sm font-semibold drop-shadow-md">{{ __($facility['text_key']) }}</h3>
-                        </div>
-                    </div>
-                @endforeach
+    {{-- Grid dinamis yang mengambil data dari controller --}}
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        @forelse($facilities as $facility)
+            <div class="relative group">
+                <img src="{{ asset('storage/' . $facility->image_path) }}" alt="{{ $facility->title }}" class="w-full h-32 md:h-40 object-cover rounded-lg shadow-md">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 rounded-lg"></div>
+                <div class="absolute bottom-0 left-0 p-2">
+                    <h3 class="text-white text-xs md:text-sm font-semibold drop-shadow-md">{{ $facility->title }}</h3>
+                </div>
             </div>
-        </div>
+        @empty
+            <p class="col-span-full text-center text-gray-500">
+                Data fasilitas belum tersedia.
+            </p>
+        @endforelse
+    </div>
+</div>
 
 
 

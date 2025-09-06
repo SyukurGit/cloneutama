@@ -17,6 +17,8 @@ use App\Http\Controllers\NewsPageController;
 use App\Http\Controllers\Admin\InfoSectionController; 
 use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\ActivityLogController;
+use App\Http\Controllers\ProfileController; // <-- Tambahkan ini di bagian atas
+
 
 
 /*
@@ -29,6 +31,8 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/berita', [NewsPageController::class, 'index'])->name('news.index');
 Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show');
 Route::view('/profile', 'profile.index')->name('profile.index');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
 
 
 

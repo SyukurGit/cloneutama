@@ -6,7 +6,7 @@ use App\Models\News;
 use App\Models\Leadership;
 use App\Models\Testimonial;
 use App\Models\Tag;
-use App\Models\Facility; // 1. TAMBAHKAN MODEL FACILITY
+use App\Models\Facility; // Pastikan model ini di-import
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,27 +16,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Kode lama Anda (tetap dipertahankan)
         $latestNews = News::with('tags')->latest('published_at')->take(4)->get();
         $leaders = Leadership::orderBy('order')->get();
         $testimonials = Testimonial::latest()->get();
-
-        // 2. TAMBAHKAN LOGIKA UNTUK MENGAMBIL DATA FASILITAS
+        
+        // Mengambil data fasilitas dari database
         $facilities = Facility::latest()->get();
 
-        // 3. TAMBAHKAN VARIABEL $facilities KE DALAM ARRAY VIEW
+        // Mengirim semua data ke view 'db'
         return view('db', [
             'newsItems'    => $latestNews,
             'leaders'      => $leaders,
             'testimonials' => $testimonials,
-            'facilities'   => $facilities, // <-- Data fasilitas ditambahkan di sini
+            'facilities'   => $facilities, // Variabel ini sudah benar
         ]);
     }
 
     /**
-     * ==========================================================
-     * METHOD LAMA ANDA UNTUK ARSIP BERITA (TIDAK DIUBAH)
-     * ==========================================================
+     * Menampilkan halaman arsip berita.
      */
     public function newsIndex(Request $request)
     {
@@ -59,13 +56,13 @@ class DashboardController extends Controller
 
         return view('news-index', [
             'newsItems' => $newsItems,
-            'tags' => $tags,
+            'tags'      => $tags,
             'activeTag' => $activeTag,
         ]);
     }
 
     /**
-     * Menampilkan detail berita. (TIDAK DIUBAH)
+     * Menampilkan detail berita.
      */
     public function show(News $news)
     {
