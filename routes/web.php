@@ -87,6 +87,10 @@ Route::resource('berita', NewsController::class);
         // 6. Manajemen Program Studi (CRUD)
         Route::resource('program-studi', StudyProgramController::class);
 
+        // add update
+    Route::resource('facilities', App\Http\Controllers\Admin\FacilityController::class)->except(['show']);
+
+
         // 7. Manajemen Tim Pimpinan (CRUD)
         Route::resource('pimpinan', LeadershipController::class);
 
@@ -105,6 +109,9 @@ Route::put('/info-section', [InfoSectionController::class, 'update'])->name('inf
 
 
         Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity_log.index');
+
+
+        
 
 
     });

@@ -13,14 +13,6 @@ return [
     'title'           => 'Home',
     'navbar_brand'    => 'LOGOPASCASARJANA',
 
-
-
-
-
-
-
-
-
     
 // resources/lang/en/db.php
 'leadership' => [
