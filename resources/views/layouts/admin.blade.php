@@ -30,61 +30,61 @@
         class="relative min-h-screen md:flex"
     >
         {{-- Sidebar --}}
-        <aside 
-            :class="{ 
-                'translate-x-0': isSidebarOpen && window.innerWidth <= 768, 
-                '-translate-x-full': !isSidebarOpen && window.innerWidth <= 768,
-                'w-64': isSidebarOpen && window.innerWidth > 768,
-                'w-20': !isSidebarOpen && window.innerWidth > 768
-            }"
-            class="fixed inset-y-0 left-0 bg-gray-900 text-white shadow-lg z-30 sidebar-transition md:translate-x-0"
-        >
-           <div class="h-16 flex items-center justify-center px-4 bg-gray-100 border-b border-gray-700">
-                <a href="{{ route('admin.dashboard') }}">
-                    <img x-show="isSidebarOpen" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10 w-auto bg-white p-100 rounded-md shadow-sm">
-                    <img x-show="!isSidebarOpen" src="{{ asset('images/logouin.png') }}" alt="Logo Ikon" class="h-10 w-10">
+      {{-- Sidebar --}}
+<aside 
+    :class="{ 
+        'translate-x-0': isSidebarOpen && window.innerWidth <= 768, 
+        '-translate-x-full': !isSidebarOpen && window.innerWidth <= 768,
+        'w-64': isSidebarOpen && window.innerWidth > 768,
+        'w-20': !isSidebarOpen && window.innerWidth > 768
+    }"
+    class="fixed inset-y-0 left-0 bg-gray-900 text-white shadow-lg z-30 sidebar-transition md:translate-x-0 flex flex-col"
+>
+    <div class="h-16 flex items-center justify-center px-4 bg-gray-100 border-b border-gray-700">
+        <a href="{{ route('admin.dashboard') }}">
+            <img x-show="isSidebarOpen" src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10 w-auto bg-white p-100 rounded-md shadow-sm">
+            <img x-show="!isSidebarOpen" src="{{ asset('images/logouin.png') }}" alt="Logo Ikon" class="h-10 w-10">
+        </a>
+    </div>
+
+    <nav class="px-4 py-4 space-y-2 overflow-y-auto overscroll-contain flex-1">
+        @php
+            $navLinks = [
+                ['route' => 'admin.dashboard', 'label' => 'Dashboard Utama', 'icon' => 'fa-home', 'role' => 'any'],
+                ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper', 'role' => 'any'],
+                ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap', 'role' => 'superadmin'],
+                ['route' => 'admin.info_section.edit', 'label' => 'Motto Pasca', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
+                ['route' => 'admin.information.index', 'label' => 'Informasi Pasca', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
+                ['route' => 'admin.facilities.index', 'label' => 'Daftar Fasilitas', 'icon' => 'fa-building', 'role' => 'superadmin'],
+                ['route' => 'admin.testimonials.index', 'label' => 'Alumni Words', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],
+                ['route' => 'admin.pimpinan.index', 'label' => 'Our Leadership', 'icon' => 'fa-users', 'role' => 'superadmin'],
+                ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop', 'role' => 'superadmin'],
+                ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie', 'role' => 'superadmin'],
+                ['route' => 'admin.users.index', 'label' => 'Pengaturan Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],
+                ['route' => 'admin.activity_log.index', 'label' => 'Log Aktivitas', 'icon' => 'fa-history', 'role' => 'superadmin'],
+                ['route' => 'admin.about', 'label' => 'Tentang Situs Ini', 'icon' => 'fa-info-circle', 'role' => 'any'],
+            ];
+        @endphp
+
+        @foreach ($navLinks as $link)
+            @if($link['role'] == 'any' || auth()->user()->role == 'superadmin')
+                <a href="{{ route($link['route']) }}" 
+                   class="flex items-center px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors duration-200 
+                          @if(request()->routeIs(str_replace('.index', '.*', $link['route']))) bg-red-600 @endif"
+                   :title="isSidebarOpen ? '' : '{{ $link['label'] }}'">
+                    <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
+                    <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
                 </a>
-            </div>
-
-           <nav class="px-4 py-4 space-y-2">
-                @php
-                    $navLinks = [
-                        ['route' => 'admin.dashboard', 'label' => 'Dashboard Utama', 'icon' => 'fa-home', 'role' => 'any'],
-                        ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper', 'role' => 'any'],
-                        ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop', 'role' => 'superadmin'],
-                        ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap', 'role' => 'superadmin'],
-                        ['route' => 'admin.facilities.index', 'label' => 'Fasilitas', 'icon' => 'fa-building', 'role' => 'superadmin'],
-                        ['route' => 'admin.information.index', 'label' => 'Information', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
-
-                        ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie', 'role' => 'superadmin'],
-                        ['route' => 'admin.info_section.edit', 'label' => 'Info Section', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
-                        ['route' => 'admin.pimpinan.index', 'label' => 'Pimpinan', 'icon' => 'fa-users', 'role' => 'superadmin'],
-                        ['route' => 'admin.testimonials.index', 'label' => 'Testimoni', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],
-                        ['route' => 'admin.users.index', 'label' => 'Setting Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],
-                        ['route' => 'admin.activity_log.index', 'label' => 'Riwayat Log', 'icon' => 'fa-history', 'role' => 'superadmin'],
-                        ['route' => 'admin.about', 'label' => 'Tentang Panel Ini', 'icon' => 'fa-info-circle', 'role' => 'any'],
-                    ];
-                @endphp
-
-                @foreach ($navLinks as $link)
-                    @if($link['role'] == 'any' || auth()->user()->role == 'superadmin')
-                        <a href="{{ route($link['route']) }}" 
-                           class="flex items-center px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors duration-200 
-                                  @if(request()->routeIs(str_replace('.index', '.*', $link['route']))) bg-red-600 @endif"
-                           :title="isSidebarOpen ? '' : '{{ $link['label'] }}'">
-                            <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
-                            <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
-                        </a>
-                    @else
-                        <div class="flex items-center px-4 py-2.5 rounded-lg text-gray-500 cursor-not-allowed"
-                             :title="isSidebarOpen ? '' : '{{ $link['label'] }} (Akses Ditolak)'">
-                            <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
-                            <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
-                        </div>
-                    @endif
-                @endforeach
-            </nav>
-        </aside>
+            @else
+                <div class="flex items-center px-4 py-2.5 rounded-lg text-gray-500 cursor-not-allowed"
+                     :title="isSidebarOpen ? '' : '{{ $link['label'] }} (Akses Ditolak)'">
+                    <i class="fas {{ $link['icon'] }} fa-fw" :class="{ 'mr-3': isSidebarOpen }"></i>
+                    <span x-show="isSidebarOpen" class="flex-1">{{ $link['label'] }}</span>
+                </div>
+            @endif
+        @endforeach
+    </nav>
+</aside>
 
         {{-- Backdrop untuk mobile --}}
         <div x-show="isSidebarOpen && window.innerWidth <= 768" class="fixed inset-0 bg-black opacity-50 z-20" @click="isSidebarOpen = false"></div>

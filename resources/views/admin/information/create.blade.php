@@ -25,8 +25,8 @@
                     <input type="text" name="title" id="title" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" value="{{ old('title') }}" required>
                 </div>
                 <div>
-                    <label for="label" class="block text-sm font-medium text-gray-700 mb-1">Label/Badge (Opsional)</label>
-                    <input type="text" name="label" id="label" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" value="{{ old('label') }}" placeholder="Contoh: Pengumuman, Brosur">
+                    <label for="label" class="block text-sm font-medium text-gray-700 mb-1">Label/Badge (Opsional) "Contoh: Announcement, Brochure, dll</label>
+                    <input type="text" name="label" id="label" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md" value="{{ old('label') }}" placeholder="Contoh: Announcement, Brochure ">
                 </div>
                 <div class="md:col-span-2">
                     <label for="thumbnail" class="block text-sm font-medium text-gray-700 mb-1">Thumbnail (Opsional)</label>

@@ -5,13 +5,13 @@
         {{-- Judul Seksi --}}
         <div class="flex items-center mb-12">
             <span class="w-10 h-1 bg-red-600 rounded-full"></span>
-            <h2 class="ml-4 text-3xl font-bold text-black">Information & Annoucement</h2>
+            <h2 class="ml-4 text-3xl font-bold text-black">Information & Announcement</h2>
         </div>
 
         {{-- Daftar Informasi --}}
         <div class="space-y-4 max-w-4xl mx-auto">
             @forelse ($informations as $info)
-                <div class="bg-white rounded-lg shadow-md p-4 flex items-center space-x-4 transition-all hover:shadow-xl hover:scale-[1.02]">
+                <div class="bg-white rounded-lg shadow-md p-4 flex items-center space-x-4 transition-all hover:shadow-xl ">
                     {{-- Thumbnail --}}
                     <div class="flex-shrink-0">
                         @if($info->thumbnail)
@@ -27,7 +27,7 @@
                     <div class="flex-grow">
                         <h3 class="font-bold text-gray-800 text-lg">{{ $info->title }}</h3>
                         @if($info->label)
-                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
+                            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-100">
                                 {{ $info->label }}
                             </span>
                         @endif
@@ -38,12 +38,12 @@
                         @if($info->type === 'link')
                             <a href="{{ $info->external_link }}" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-flex items-center">
                                 <i class="fas fa-external-link-alt mr-2"></i>
-                                Lihat
+                                Donwload
                             </a>
                         @else
-                            <a href="{{ asset('storage/' . $info->file_path) }}" download class="bg-gray-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors inline-flex items-center">
+                            <a href="{{ asset('storage/' . $info->file_path) }}" download class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-flex items-center">
                                 <i class="fas fa-download mr-2"></i>
-                                Unduh
+                                Donwload
                             </a>
                         @endif
                     </div>

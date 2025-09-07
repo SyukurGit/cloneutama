@@ -93,4 +93,81 @@
     </div>
 </footer>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<!-- Tombol Scroll to Top (minimalis + kecil) -->
+<a href="#" id="scrollToTopBtn"
+   class="fixed bottom-5 right-5 z-50 h-9 w-9 flex items-center justify-center
+          rounded-md border border-white/20 bg-white/5 text-white/80
+          shadow-sm backdrop-blur-md
+          opacity-0 translate-y-2 pointer-events-none
+          transition-all duration-300 ease-out hover:scale-105"
+   aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+       fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <!-- double chevron up (minimalis) -->
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 16l6-6 6 6" />
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12l6-6 6 6" />
+  </svg>
+</a>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('scrollToTopBtn');
+
+    // AKTIF (sedang scroll): merah solid & menonjol
+    const activeClasses = [
+      'bg-gradient-to-r','from-red-600','to-red-700','text-white',
+      'ring-1','ring-white/20','shadow-lg',
+      'opacity-100','translate-y-0','pointer-events-auto'
+    ];
+
+    // IDLE (berhenti scroll): tetap merah, tapi lebih transparan & subtle
+    const idleOnClasses = [
+      'bg-gradient-to-r','from-red-600','to-red-700','text-white',
+      'ring-1','ring-white/10','shadow',
+      'opacity-60','translate-y-0','pointer-events-auto'  // << atur transparansi di sini
+    ];
+
+    // Sembunyikan (di atas ambang)
+    const hiddenClasses = ['opacity-0','translate-y-2','pointer-events-none'];
+
+    let scrollTimer = null;
+    const SHOW_AT = 200;       // muncul setelah 200px
+    const IDLE_DELAY = 220;    // ms setelah berhenti scroll → idle
+
+    function add(c) { btn.classList.add(...c); }
+    function remove(c) { btn.classList.remove(...c); }
+
+    function setHidden() {
+      remove(activeClasses); remove(idleOnClasses); add(hiddenClasses);
+    }
+    function setIdle() {
+      remove(activeClasses); remove(hiddenClasses); add(idleOnClasses);
+    }
+    function setActive() {
+      remove(idleOnClasses); remove(hiddenClasses); add(activeClasses);
+    }
+
+    // State awal
+    setHidden();
+
+    // Toggle sesuai posisi & aktivitas scroll
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset || document.documentElement.scrollTop;
+      if (y > SHOW_AT) {
+        setActive(); // sedang scroll → solid
+
+        // setelah berhenti → idle (lebih transparan)
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => setIdle(), IDLE_DELAY);
+      } else {
+        setHidden();
+      }
+    }, { passive: true });
+
+    // Aksi klik
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
