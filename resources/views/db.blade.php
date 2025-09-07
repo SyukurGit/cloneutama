@@ -32,11 +32,18 @@
     {{-- info section --}}
 <x-info-section/>
 
-
+ {{-- infomasi --}}
+@if($informations->isNotEmpty())
+    <x-information-section :informations="$informations" />
+@endif
     
 {{-- fasilitas --}}
     {{-- <x-facilities-grid/> --}}
     <x-facilities-grid :facilities="$facilities" />
+
+
+   
+
 
 
 <x-alumni-testimonials :testimonials="$testimonials" />

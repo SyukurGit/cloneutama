@@ -94,6 +94,11 @@ Route::resource('berita', NewsController::class);
         // add update
     Route::resource('facilities', App\Http\Controllers\Admin\FacilityController::class)->except(['show']);
 
+    //infomation 
+        Route::resource('information', App\Http\Controllers\Admin\InformationController::class)->except(['show']);
+         Route::post('information/toggle', [App\Http\Controllers\Admin\InformationController::class, 'toggleVisibility'])->name('information.toggle');
+
+
 
         // 7. Manajemen Tim Pimpinan (CRUD)
         Route::resource('pimpinan', LeadershipController::class);

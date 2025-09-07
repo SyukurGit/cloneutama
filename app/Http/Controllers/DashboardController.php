@@ -7,6 +7,8 @@ use App\Models\Leadership;
 use App\Models\Testimonial;
 use App\Models\Tag;
 use App\Models\Facility; // Pastikan model ini di-import
+use App\Models\Information; // <-- 1. IMPORT MODEL INFORMATION
+use App\Models\Setting; // <-- 1. PASTIKAN MODEL SETTING DI-IMPORT
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -23,12 +25,23 @@ class DashboardController extends Controller
         // Mengambil data fasilitas dari database
         $facilities = Facility::latest()->get();
 
+       // 2. LOGIKA KONDISIONAL UNTUK MENGAMBIL DATA
+        $informations = collect(); // Buat koleksi kosong sebagai default
+        $isInformationSectionEnabled = Setting::where('key', 'information_section_enabled')->first()->value ?? 'true';
+
+        if ($isInformationSectionEnabled === 'true') {
+            $informations = Information::latest()->get();
+        }
+
+
         // Mengirim semua data ke view 'db'
         return view('db', [
             'newsItems'    => $latestNews,
             'leaders'      => $leaders,
             'testimonials' => $testimonials,
             'facilities'   => $facilities, // Variabel ini sudah benar
+            'informations' => $informations, // <-- Data informasi ditambahkan di sini
+
         ]);
     }
 

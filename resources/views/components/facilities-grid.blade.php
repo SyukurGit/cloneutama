@@ -5,7 +5,7 @@
         {{-- Judul Seksi --}}
         <div class="flex items-center mb-12">
             <span class="w-10 h-1 bg-red-600 rounded-full"></span>
-            <h2 class="ml-4 text-3xl font-bold text-black">{{ __('db.facilities.section_title') }}</h2>
+<h2 class="ml-4 text-3xl font-bold text-black"> Various Supporting Facilities</h2>
         </div>
 
         {{-- Cek apakah ada data fasilitas --}}
