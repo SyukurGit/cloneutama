@@ -21,9 +21,9 @@
     {{-- ============ BAGIAN BARU UNTUK TOMBOL SWITCH ============ --}}
     {{-- ====================================================== --}}
     <div class="bg-white p-6 rounded-2xl shadow-lg">
-        <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-3">Pengaturan Tampilan Seksi</h3>
+        <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-3">Pengaturan Tampilan</h3>
         <div x-data="{ enabled: {{ $isSectionEnabled }} }" class="flex items-center">
-            <span class="text-sm font-medium text-gray-700 mr-4">Tampilkan seksi ini di halaman depan:</span>
+            <span class="text-sm font-medium text-gray-700 mr-4">Tampilkan Information ini di halaman depan:</span>
             <form id="toggleForm" action="{{ route('admin.information.toggle') }}" method="POST" class="inline-flex">
                 @csrf
                 <input type="hidden" name="enabled" :value="enabled">

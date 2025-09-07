@@ -11,15 +11,15 @@ use Illuminate\Validation\Rule;
 
 class InformationController extends Controller
 {
-    public function index()
-    {
-        $informations = Information::latest()->get();
-        $isSectionEnabled = Setting::where('key', 'information_section_enabled')->first()->value ?? 'true';
+  // VERSI BARU YANG SUDAH DIPERBAIKI
+public function index()
+{
+    $informations = Information::latest()->get();
+    $isSectionEnabled = Setting::where('key', 'information_section_enabled')->first()->value ?? 'true';
 
-        return view('admin.information.index', compact('informations'));
-
-        
-    }
+    // Tambahkan 'isSectionEnabled' di sini
+    return view('admin.information.index', compact('informations', 'isSectionEnabled'));
+}
 
 
      public function toggleVisibility(Request $request)
@@ -33,7 +33,7 @@ class InformationController extends Controller
             ['value' => $request->input('enabled')]
         );
 
-        $message = $request->input('enabled') === 'true' ? 'Seksi Informasi berhasil diaktifkan.' : 'Seksi Informasi berhasil dinonaktifkan.';
+        $message = $request->input('enabled') === 'true' ? 'menu Information berhasil diaktifkan.' : 'Menu Information berhasil dinonaktifkan.';
 
         return back()->with('success', $message);
     }
