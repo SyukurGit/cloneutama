@@ -14,25 +14,32 @@
     <x-navbar/>
     
 
-    <main x-data="{ activeTab: 'greeting' }">
+    <main x-data="{
+            activeTab: 'greeting',
+            titles: {
+                greeting: 'Director\u2019s Welcome',
+                history: 'History',
+                vision: 'Vision and Mission',
+                directors: 'Directorate',
+                accreditation: 'Accreditation',
+                structure: 'Organizational Structure',
+                lecturers: 'Experts and Homebase Lecturers',
+                teaching_staff: 'Educational Staff',
+                facilities: 'Graduate School Facilities',
+                cooperation: 'Collaboration',
+            },
+            get currentTitle(){
+                return this.titles[this.activeTab] ?? ''
+            }
+        }">
         {{-- Header dengan Latar Belakang --}}
         <div class="bg-gray-200 py-12">
             <div class="container mx-auto px-4">
                 <h1 class="text-4xl font-bold text-gray-800">
-                    {{-- Judul akan berubah sesuai tab aktif --}}
-                    <span x-show="activeTab === 'greeting'">Director's Greeting</span>
-                    <span x-show="activeTab === 'history'">History</span>
-                    <span x-show="activeTab === 'vision'">Vision and Mission</span>
-                    <span x-show="activeTab === 'directors'">Directorate</span>
-                    <span x-show="activeTab === 'accreditation'">Accreditation</span>
-                    <span x-show="activeTab === 'structure'">Organizational Structure</span>
-                    <span x-show="activeTab === 'lecturers'">Experts and Homebase Lecturers</span>
-                    <span x-show="activeTab === 'teaching_staff'">Educational Staff</span>
-                    <span x-show="activeTab === 'facilities'">Graduate School Facilities</span>
-                    <span x-show="activeTab === 'cooperation'">Collaboration</span>
-                    {{-- Tambahkan span lain untuk judul tab lainnya --}}
+                    {{-- Judul otomatis sesuai tab aktif --}}
+                    <span x-text="currentTitle"></span>
                 </h1>
-                <p class="text-gray-600">Home / Profile / <span x-text="activeTab.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())"></span></p>
+                <p class="text-gray-600">Home / Profile / <span x-text="currentTitle"></span></p>
             </div>
         </div>
 
@@ -44,7 +51,7 @@
                     <div class="bg-red-700 rounded-lg p-6 text-white shadow-lg">
                         <h3 class="font-bold text-lg border-b border-red-500 pb-3 mb-4">Profile Menu</h3>
                         <ul class="space-y-1 text-sm">
-                            {{-- Setiap link diubah untuk mengontrol Alpine.js --}}
+                            {{-- Setiap link mengontrol Alpine.js --}}
                             <li><a href="#" @click.prevent="activeTab = 'greeting'" :class="{ 'bg-red-600 font-semibold': activeTab === 'greeting' }" class="block px-4 py-2 rounded-md hover:bg-red-600 transition-colors">Director’s Welcome</a></li>
                             <li><a href="#" @click.prevent="activeTab = 'history'" :class="{ 'bg-red-600 font-semibold': activeTab === 'history' }" class="block px-4 py-2 rounded-md hover:bg-red-600 transition-colors">History</a></li>
                             <li><a href="#" @click.prevent="activeTab = 'vision'" :class="{ 'bg-red-600 font-semibold': activeTab === 'vision' }" class="block px-4 py-2 rounded-md hover:bg-red-600 transition-colors">Vision and Mission</a></li>
@@ -73,9 +80,27 @@
         <div x-show="activeTab === 'greeting'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Director’s Welcome</h2>
             <div class="prose max-w-none text-justify">
-                <p class="font-semibold italic">Assalamualaikum Wr. Wb.</p>
-                <p>Alhamdulillah, by expressing praise and gratitude for the presence of Allah SWT, welcome to the official website of the Graduate School, Ar-Raniry State Islamic University Banda Aceh. This website is designed as an information media for communication and publication platform that is accurate, transparent, and accountable to all visitors, both internal and external of the Graduate School community at Ar-Raniry State Islamic University. Through this website, we hope that Graduate School will become more widely recognized and provide easy access to information more quickly and efficiently. The information provided relates to academic programs, curriculum, teaching staff, human resources, student data, student activities, research, and other supporting infrastructure available.</p>
-                <p>Finally, I would like to express my gratitude to all visitors who consistently access the various information provided on this website. Criticism and suggestions are certainly essential as a form of evaluation so that we can continue to improve and develop this platform to offer higher quality benefits to all parties involved.</p>
+                <p class="font-semibold italic" style="margin-bottom: 1rem;">Assalamualaikum Wr. Wb.</p>
+<p style="text-indent: 1rem; margin-bottom: 1rem;">
+    Alhamdulillah, by expressing praise and gratitude for the presence of Allah SWT, welcome to the official
+    website of the Graduate School, Ar-Raniry State Islamic University Banda Aceh. This website is designed as
+    an information media for communication and publication platform that is accurate, transparent, and
+    accountable to all visitors, both internal and external of the Graduate School community at Ar-Raniry State
+    Islamic University. Through this website, we hope that Graduate School will become more widely recognized
+    and provide easy access to information more quickly and efficiently. The information provided relates to
+    academic programs, curriculum, teaching staff, human resources, student data, student activities, research,
+    and other supporting infrastructure available.
+</p>
+
+<p style="text-indent: 1rem; margin-top: 1rem;">
+    Finally, I would like to express my gratitude to all visitors who consistently access the various information
+    provided on this website. Criticism and suggestions are certainly essential as a form of evaluation so that we
+    can continue to improve and develop this platform to offer higher quality benefits to all parties involved.
+</p>
+
+
+
+
                 <p class="font-semibold italic mt-6">Walaikumsalam Wr.Wb.</p>
                 
                 <div class="mt-8 border-t pt-4">
@@ -87,26 +112,58 @@
 
 
 
-     <div x-show="activeTab === 'history'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" style="display: none;">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">History of the Graduate School</h2>
+    <div x-show="activeTab === 'history'" 
+     x-transition:enter="transition ease-out duration-300" 
+     x-transition:enter-start="opacity-0" 
+     style="display: none;">
+     
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">
+        History of the Graduate School
+    </h2>
+    
     <div class="prose max-w-none text-justify">
-        <p>
-            Before 2013, Ar-Raniry State Islamic University (UIN Ar-Raniry) was known as IAIN Ar-Raniry. The institute was officially established on <strong>October 5, 1963</strong>, becoming the third IAIN in Indonesia after those in Yogyakarta and Jakarta. The foundation of the Graduate School began in the 1978/1979 academic year through an initiative by the rector at the time, the late <strong>Prof. H. Ali Hasjmy</strong>, who opened a program called <i>Studi Purna Ulama</i> (SPU).
+        <p style="text-indent: 1rem; margin-bottom: 1rem;">
+            Before 2013, Ar-Raniry State Islamic University (UIN Ar-Raniry) was known as IAIN Ar-Raniry. 
+            The institute was officially established on <strong>October 5, 1963</strong>, becoming the third IAIN in 
+            Indonesia after those in Yogyakarta and Jakarta. The foundation of the Graduate School began 
+            in the 1978/1979 academic year through an initiative by the rector at the time, the late 
+            <strong>Prof. H. Ali Hasjmy</strong>, who opened a program called <i>Studi Purna Ulama</i> (SPU).
         </p>
-        <p>
-            The effort to enhance Islamic knowledge continued under the leadership of the late <strong>Prof. H. Ibrahim Husein, MA</strong>. With crucial moral and financial support from the Governor of Aceh Province, the late <strong>Prof. Dr. H. Ibrahim Hasan, MBA</strong>, the Graduate School of IAIN Ar-Raniry Banda Aceh was officially established in the <strong>1989/1990 academic year</strong>. Initially, it operated as a branch of the Graduate School of IAIN Syarif Hidayatullah Jakarta.
+        
+        <p style="text-indent: 1rem; margin-bottom: 1rem;">
+            The effort to enhance Islamic knowledge continued under the leadership of the late 
+            <strong>Prof. H. Ibrahim Husein, MA</strong>. With crucial moral and financial support from the Governor 
+            of Aceh Province, the late <strong>Prof. Dr. H. Ibrahim Hasan, MBA</strong>, the Graduate School of IAIN 
+            Ar-Raniry Banda Aceh was officially established in the <strong>1989/1990 academic year</strong>. Initially, 
+            it operated as a branch of the Graduate School of IAIN Syarif Hidayatullah Jakarta.
         </p>
-        <p>
-            In <strong>1997</strong>, through the Minister of Religious Affairs Decree No. 28, the Graduate School of IAIN Ar-Raniry gained standalone status. The journey continued in the <strong>2002/2003 academic year</strong> with the opening of a Doctoral (S3) Program in Modern Fiqh Studies, inaugurated by the Minister of Religious Affairs, <strong>Prof. Dr. Sayyid Agil Hussein Al-Munawwar, MA</strong>. Subsequently, in 2008, the Doctoral Program (S3) in Islamic Education was also established.
+        
+        <p style="text-indent: 1rem; margin-bottom: 1rem;">
+            In <strong>1997</strong>, through the Minister of Religious Affairs Decree No. 28, the Graduate School of 
+            IAIN Ar-Raniry gained standalone status. The journey continued in the <strong>2002/2003 academic year</strong> 
+            with the opening of a Doctoral (S3) Program in Modern Fiqh Studies, inaugurated by the Minister of 
+            Religious Affairs, <strong>Prof. Dr. Sayyid Agil Hussein Al-Munawwar, MA</strong>. Subsequently, in 2008, 
+            the Doctoral Program (S3) in Islamic Education was also established.
         </p>
-        <p>
-            A major milestone was reached on <strong>October 5, 2013</strong>, coinciding with its 50th anniversary. Through Presidential Regulation No. 64 of 2013, IAIN Ar-Raniry officially became <strong>Ar-Raniry State Islamic University (UIN Ar-Raniry)</strong>. Consequently, the graduate program was renamed the Graduate School of Ar-Raniry State Islamic University.
+        
+        <p style="text-indent: 1rem; margin-bottom: 1rem;">
+            A major milestone was reached on <strong>October 5, 2013</strong>, coinciding with its 50th anniversary. 
+            Through Presidential Regulation No. 64 of 2013, IAIN Ar-Raniry officially became 
+            <strong>Ar-Raniry State Islamic University (UIN Ar-Raniry)</strong>. Consequently, the graduate program 
+            was renamed the Graduate School of Ar-Raniry State Islamic University.
         </p>
-        <p>
-            In 2015, a significant transformation occurred as several concentrations were restructured into independent programs. This resulted in the establishment of 7 new Master’s Programs. Currently, the Graduate School of UIN Ar-Raniry Banda Aceh offers <strong>2 Doctoral Programs</strong> (Modern Fiqh Studies and Islamic Religious Education) and <strong>7 Master’s Programs</strong>, including Islamic Religious Studies, Family Law (Ahwal Syakhsiyyah), Sharia Economics, Islamic Religious Education, Arabic Language Education, Al-Qur’an and Tafsir Studies, and Islamic Communication and Broadcasting.
+        
+        <p style="text-indent: 1rem;">
+            In 2015, a significant transformation occurred as several concentrations were restructured into 
+            independent programs. This resulted in the establishment of 7 new Master’s Programs. Currently, 
+            the Graduate School of UIN Ar-Raniry Banda Aceh offers <strong>2 Doctoral Programs</strong> (Modern 
+            Fiqh Studies and Islamic Religious Education) and <strong>7 Master’s Programs</strong>, including Islamic 
+            Religious Studies, Family Law (Ahwal Syakhsiyyah), Sharia Economics, Islamic Religious Education, 
+            Arabic Language Education, Al-Qur’an and Tafsir Studies, and Islamic Communication and Broadcasting.
         </p>
     </div>
 </div>
+
 
         <div x-show="activeTab === 'vision'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" style="display: none;">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3">Vision and Mission</h2>
@@ -239,32 +296,10 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
         {{-- Tambahkan div lain dengan x-show untuk setiap menu lainnya di sini --}}
 
     </div>
 </div>
-
 
 
 
