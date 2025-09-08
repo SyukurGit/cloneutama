@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ThesisSchedule;
 use Illuminate\Http\Request;
+use App\Models\StudyProgram; // 1. TAMBAHKAN USE STATEMENT INI
+
 
 class ThesisScheduleController extends Controller
 {
     public function index()
     {
         $schedules = ThesisSchedule::orderBy('order', 'asc')->get();
-        return view('admin.thesis_schedules.index', compact('schedules'));
+        
+        // 2. TAMBAHKAN BARIS UNTUK MENGAMBIL DATA PROGRAM STUDI
+        $studyPrograms = StudyProgram::where('is_published', true)->get();
+
+        // 3. KIRIM KEDUA VARIABEL KE VIEW MENGGUNAKAN compact()
+        return view('thesis-schedule', compact('schedules', 'studyPrograms'));
     }
 
     public function create()

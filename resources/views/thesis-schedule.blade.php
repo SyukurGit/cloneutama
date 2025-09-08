@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-    <x-navbar />
+<x-navbar :studyPrograms="$studyPrograms" /> 
 
     <main>
         <div class="container mx-auto max-w-4xl py-12 px-4 sm:px-6 lg:px-8">
