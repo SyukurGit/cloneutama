@@ -1,22 +1,19 @@
 @php
-    // ======================================================================
-    // DATA PROGRAM STUDI DENGAN LINK
-    // Ganti nilai '#...' dengan URL tujuan Anda.
-    // ======================================================================
     $studyPrograms = [
         // Magister (S2)
-        ['key' => 's2_tafsir',           'link' => 'https://pps.ar-raniry.ac.id/program-studi/ilmu-al-quran-dan-tafsir-s2/'],
-        ['key' => 's2_islamic_studies',  'link' => '#link-untuk-s2-studi-islam'],
-        ['key' => 's2_islamic_education','link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-agama-islam-s2/'],
-        ['key' => 's2_family_law',       'link' => '#link-untuk-s2-hukum-keluarga'],
-        ['key' => 's2_islamic_economics','link' => 'https://pps.ar-raniry.ac.id/program-studi/ekonomi-syariah-s2/'],
-        ['key' => 's2_communication',    'link' => '#link-untuk-s2-kpi'],
-        ['key' => 's2_arabic_education', 'link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-bahasa-arab-s2/'],
+        ['name' => "Al-Quran and Tafsir Studies [Master's]",            'link' => 'https://pps.ar-raniry.ac.id/program-studi/ilmu-al-quran-dan-tafsir-s2/'],
+        ['name' => "Islamic Religious Studies [Master's]",              'link' => '#link-untuk-s2-studi-islam'],
+        ['name' => "Islamic Religious Education [Master's]",            'link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-agama-islam-s2/'],
+        ['name' => "Family Law [Master's]",                             'link' => '#link-untuk-s2-hukum-keluarga'],
+        ['name' => "Sharia Economics [Master's]",                       'link' => 'https://pps.ar-raniry.ac.id/program-studi/ekonomi-syariah-s2/'],
+        ['name' => "Islamic Communication and Broadcasting [Master's]", 'link' => '#link-untuk-s2-kpi'],
+        ['name' => "Arabic Language Education [Master's]",              'link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-bahasa-arab-s2/'],
+
         // Doktor (S3)
-        ['key' => 's3_islamic_economics','link' => 'https://pps.ar-raniry.ac.id/program-studi/ekonomi-syariah-s3/'],
-        ['key' => 's3_islamic_studies',  'link' => 'https://pps.ar-raniry.ac.id/program-studi/studi-islam-s3/'],
-        ['key' => 's3_islamic_education','link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-agama-islam-s3/'],
-        ['key' => 's3_fiqh',             'link' => 'https://pps.ar-raniry.ac.id/program-studi/fiqih-modern-s3/'],
+        ['name' => 'Sharia Economics [Doctoral]',           'link' => 'https://pps.ar-raniry.ac.id/program-studi/ekonomi-syariah-s3/'],
+        ['name' => 'Islamic Studies [Doctoral]',            'link' => 'https://pps.ar-raniry.ac.id/program-studi/studi-islam-s3/'],
+        ['name' => 'Islamic Religious Education [Doctoral]','link' => 'https://pps.ar-raniry.ac.id/program-studi/pendidikan-agama-islam-s3/'],
+        ['name' => 'Modern Fiqh [Doctoral]',                'link' => 'https://pps.ar-raniry.ac.id/program-studi/fiqih-modern-s3/'],
     ];
 @endphp
 
@@ -49,7 +46,9 @@
                          class="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-20" 
                          style="display: none;">
                         @foreach($studyPrograms as $program)
-                            <a href="{{ $program['link'] }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-700">{{ __('db.study_programs.programs.' . $program['key']) }}</a>
+                            <a href="{{ $program['link'] }}" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-700">
+                                {{ $program['name'] }}
+                            </a>
                         @endforeach
                     </div>
                 </div>
@@ -65,7 +64,7 @@
                          x-transition
                          class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-20"
                          style="display: none;">
-<a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
+                        <a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
                     </div>
                 </div>
                 
@@ -80,20 +79,20 @@
             {{-- Tombol Mobile & Pilihan Bahasa --}}
             <div class="flex items-center">
                 <div class="relative me-4" x-data="{ langOpen: false }">
-                     <button @click="langOpen = !langOpen" class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors">
-                         @if(app()->getLocale() == 'id')
-                             <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
-                                 <svg class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6"><rect width="9" height="3" fill="#E31D1A"/><rect y="3" width="9" height="3" fill="#F7F7F7"/></svg>
-                             </span>
-                             <span>ID</span>
-                         @else
-                             <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
-                                 <svg class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><path d="M0 0v30h60V0z" fill="#012169"/><path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6" clip-path="url(#a)"/><path d="m0 0 60 30m0-30L0 30" stroke="#C8102E" stroke-width="4" clip-path="url(#a)"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10" clip-path="url(#a)"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6" clip-path="url(#a)"/></svg>
-                             </span>
-                             <span>EN</span>
-                         @endif
-                         <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                     </button>
+                    <button @click="langOpen = !langOpen" class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors">
+                        @if(app()->getLocale() == 'id')
+                            <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
+                                <svg class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 6"><rect width="9" height="3" fill="#E31D1A"/><rect y="3" width="9" height="3" fill="#F7F7F7"/></svg>
+                            </span>
+                            <span>ID</span>
+                        @else
+                            <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
+                                <svg class="w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="a"><path d="M0 0v30h60V0z"/></clipPath><path d="M0 0v30h60V0z" fill="#012169"/><path d="m0 0 60 30m0-30L0 30" stroke="#fff" stroke-width="6" clip-path="url(#a)"/><path d="m0 0 60 30m0-30L0 30" stroke="#C8102E" stroke-width="4" clip-path="url(#a)"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10" clip-path="url(#a)"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6" clip-path="url(#a)"/></svg>
+                            </span>
+                            <span>EN</span>
+                        @endif
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
                     <div x-show="langOpen" @click.away="langOpen = false" x-transition class="absolute right-0 mt-2 py-1 w-40 bg-white rounded-md shadow-xl z-20" style="display: none;">
                         <a href="{{ route('lang.switch', 'id') }}" class="flex items-center space-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <span class="flex items-center justify-center bg-gray-200 rounded-sm p-0.5">
@@ -134,20 +133,23 @@
                 </button>
                 <div x-show="open" x-transition class="pl-4 mt-2 space-y-1">
                     @foreach($studyPrograms as $program)
-                        <a href="{{ $program['link'] }}" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">{{ __('db.study_programs.programs.' . $program['key']) }}</a>
+                        <a href="{{ $program['link'] }}" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">
+                            {{ $program['name'] }}
+                        </a>
                     @endforeach
                 </div>
             </div>
             
             <div x-data="{ open: false }">
-                 <button @click="open = !open" class="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">
-                     <span>{{ __('db.navbar.academics') }}</span>
-                     <svg class="w-5 h-5 transform transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                 </button>
+                <button @click="open = !open" class="w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">
+                    <span>{{ __('db.navbar.academics') }}</span>
+                    <svg class="w-5 h-5 transform transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
                 <div x-show="open" x-transition class="pl-4 mt-2 space-y-1">
-<a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
+                    <a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
                 </div>
             </div>
+
             <a href="https://pps.ar-raniry.ac.id/kpm-singkil" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.service') }}</a>
             <a href="https://pps.ar-raniry.ac.id/penelitian/" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.research') }}</a>
             <a href="https://pps.ar-raniry.ac.id/gugus-penjaminan-mutu/" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.quality') }}</a>
