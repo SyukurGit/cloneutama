@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gray-100 font-sans">
 
-  {{-- panggil navbar --}}
+    {{-- panggil navbar --}}
     <x-navbar/>
     
     {{-- Memanggil komponen Carousel --}}
@@ -22,7 +22,7 @@
 
     {{-- Memanggil komponen Berita Terbaru --}}
     <x-latest-news :newsItems="$newsItems" />
-    
+
     {{-- Memanggil komponen Program Studi --}}
     <x-study-programs/>
 
@@ -30,14 +30,14 @@
     <x-director-greeting/>
 
     {{-- info section --}}
-<x-info-section/>
+    <x-info-section/>
 
  {{-- infomasi --}}
 @if($informations->isNotEmpty())
     <x-information-section :informations="$informations" />
 @endif
     
-{{-- fasilitas --}}
+    {{-- fasilitas --}}
     {{-- <x-facilities-grid/> --}}
     <x-facilities-grid :facilities="$facilities" />
 
@@ -46,7 +46,7 @@
 
 
 
-<x-alumni-testimonials :testimonials="$testimonials" />
+    <x-alumni-testimonials :testimonials="$testimonials" />
     {{-- <x-alumni-testimonials/> --}}
 
     {{-- <x-leadership-team/> --}}

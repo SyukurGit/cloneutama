@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\ProfileController; // <-- Tambahkan ini di bagian atas
 use App\Http\Controllers\ThesisSchedulePageController;
+use App\Http\Controllers\SitemapController; // Jangan lupa tambahkan ini di atas
+
 
 
 
@@ -35,6 +37,8 @@ Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('n
 Route::view('/profile', 'profile.index')->name('profile.index');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/thesis-schedule', [ThesisSchedulePageController::class, 'index'])->name('thesis.schedule');
+Route::get('/sitemap.xml', [SitemapController::class, 'generate'])->name('sitemap');
+
 
 
 

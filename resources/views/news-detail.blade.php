@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     {{-- Meta Tags for SEO & Social Media Share --}}
-    <title>{{ $news->title }} - {{ config('app.name') }}</title>
-    <meta name="description" content="{{ Str::limit(strip_tags($news->content), 155) }}">
+<x-seo 
+    :title="$news->title"
+    :description="Str::limit(strip_tags($news->body), 155)"
+    :image="asset('storage/' . $news->image)"
+/>    <meta name="description" content="{{ Str::limit(strip_tags($news->content), 155) }}">
     <meta name="author" content="{{ $news->author }}">
     <meta property="og:title" content="{{ $news->title }}" />
     <meta property="og:description" content="{{ Str::limit(strip_tags($news->content), 155) }}" />
