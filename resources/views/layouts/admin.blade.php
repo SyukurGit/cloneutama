@@ -60,9 +60,15 @@
                 ['route' => 'admin.pimpinan.index', 'label' => 'Our Leadership', 'icon' => 'fa-users', 'role' => 'superadmin'],
                 ['route' => 'admin.homepage_settings.index', 'label' => 'Halaman Depan', 'icon' => 'fa-desktop', 'role' => 'superadmin'],
                 ['route' => 'admin.director_settings.index', 'label' => 'Sambutan Direktur', 'icon' => 'fa-user-tie', 'role' => 'superadmin'],
+                ['route' => 'admin.thesis-schedules.index', 'label' => 'Thesis Schedule', 'icon' => 'fa-calendar-check', 'role' => 'superadmin'],
+
+
+
+
                 ['route' => 'admin.users.index', 'label' => 'Pengaturan Akun', 'icon' => 'fa-users-cog', 'role' => 'superadmin'],
                 ['route' => 'admin.activity_log.index', 'label' => 'Log Aktivitas', 'icon' => 'fa-history', 'role' => 'superadmin'],
                 ['route' => 'admin.about', 'label' => 'Tentang Situs Ini', 'icon' => 'fa-info-circle', 'role' => 'any'],
+                
             ];
         @endphp
 

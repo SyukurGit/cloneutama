@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\InfoSectionController;
 use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\ProfileController; // <-- Tambahkan ini di bagian atas
+use App\Http\Controllers\ThesisSchedulePageController;
+
 
 
 
@@ -119,6 +121,10 @@ Route::put('/info-section', [InfoSectionController::class, 'update'])->name('inf
 
         Route::get('/activity-log', [ActivityLogController::class, 'index'])->name('activity_log.index');
 
+//thesis
+
+Route::resource('thesis-schedules', App\Http\Controllers\Admin\ThesisScheduleController::class)->names('admin.thesis-schedules');
+Route::get('/thesis-schedule', [ThesisSchedulePageController::class, 'index'])->name('thesis.schedule');
 
         
 

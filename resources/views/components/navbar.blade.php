@@ -65,7 +65,7 @@
                          x-transition
                          class="absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-20"
                          style="display: none;">
-                        <a href="https://pps.ar-raniry.ac.id/daftar-sidang/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 hover:text-red-700">{{ __('db.navbar.thesis_defense_schedule') }}</a>
+<a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
                     </div>
                 </div>
                 
@@ -145,7 +145,7 @@
                      <svg class="w-5 h-5 transform transition-transform" :class="{'rotate-180': open}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                  </button>
                 <div x-show="open" x-transition class="pl-4 mt-2 space-y-1">
-                    <a href="https://pps.ar-raniry.ac.id/daftar-sidang/" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.thesis_defense_schedule') }}</a>
+<a href="{{ route('thesis.schedule') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Thesis Schedule</a>
                 </div>
             </div>
             <a href="https://pps.ar-raniry.ac.id/kpm-singkil" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-red-50 hover:text-red-700">{{ __('db.navbar.service') }}</a>
