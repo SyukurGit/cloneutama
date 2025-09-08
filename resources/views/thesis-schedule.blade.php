@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thesis Schedule - {{ config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="icon" href="{{ asset('images/logouin.png') }}" type="image/png">
+
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
 
-<x-navbar :studyPrograms="$studyPrograms" /> 
+    <x-navbar />
 
     <main>
         <div class="container mx-auto max-w-4xl py-12 px-4 sm:px-6 lg:px-8">

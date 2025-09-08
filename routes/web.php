@@ -34,6 +34,8 @@ Route::get('/berita', [NewsPageController::class, 'index'])->name('news.index');
 Route::get('/berita/{news:slug}', [DashboardController::class, 'show'])->name('news.show');
 Route::view('/profile', 'profile.index')->name('profile.index');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/thesis-schedule', [ThesisSchedulePageController::class, 'index'])->name('thesis.schedule');
+
 
 
 
@@ -123,10 +125,8 @@ Route::put('/info-section', [InfoSectionController::class, 'update'])->name('inf
 
 //thesis
 
-Route::resource('thesis-schedules', App\Http\Controllers\Admin\ThesisScheduleController::class)->names('admin.thesis-schedules');
-Route::get('/thesis-schedule', [ThesisSchedulePageController::class, 'index'])->name('thesis.schedule');
+        Route::resource('thesis-schedules', App\Http\Controllers\Admin\ThesisScheduleController::class);
 
-        
 
 
     });

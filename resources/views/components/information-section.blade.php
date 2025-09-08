@@ -38,12 +38,12 @@
                         @if($info->type === 'link')
                             <a href="{{ $info->external_link }}" target="_blank" class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-flex items-center">
                                 <i class="fas fa-external-link-alt mr-2"></i>
-                                Donwload
+                                view
                             </a>
                         @else
                             <a href="{{ asset('storage/' . $info->file_path) }}" download class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-flex items-center">
                                 <i class="fas fa-download mr-2"></i>
-                                Donwload
+                                view
                             </a>
                         @endif
                     </div>
