@@ -131,6 +131,9 @@ Route::put('/info-section', [InfoSectionController::class, 'update'])->name('inf
 
         Route::resource('thesis-schedules', App\Http\Controllers\Admin\ThesisScheduleController::class);
 
+            Route::resource('flyers', App\Http\Controllers\Admin\FlyerController::class)->except(['show']);
+
+
 
 
     });

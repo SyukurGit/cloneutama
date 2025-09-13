@@ -54,6 +54,7 @@
                 ['route' => 'admin.berita.index', 'label' => 'Berita', 'icon' => 'fa-newspaper', 'role' => 'any'],
                 ['route' => 'admin.program-studi.index', 'label' => 'Program Studi', 'icon' => 'fa-graduation-cap', 'role' => 'superadmin'],
                 ['route' => 'admin.info_section.edit', 'label' => 'Motto Pasca', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
+                        ['route' => 'admin.flyers.index', 'label' => 'Manajemen Flyer', 'icon' => 'fa-images', 'role' => 'superadmin'],
                 ['route' => 'admin.information.index', 'label' => 'Informasi Pasca', 'icon' => 'fa-info-circle', 'role' => 'superadmin'],
                 ['route' => 'admin.facilities.index', 'label' => 'Daftar Fasilitas', 'icon' => 'fa-building', 'role' => 'superadmin'],
                 ['route' => 'admin.testimonials.index', 'label' => 'Alumni Words', 'icon' => 'fa-comment-dots', 'role' => 'superadmin'],

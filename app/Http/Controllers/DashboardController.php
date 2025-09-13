@@ -7,7 +7,9 @@ use App\Models\Leadership;
 use App\Models\Testimonial;
 use App\Models\Tag;
 use App\Models\Facility; // Pastikan model ini di-import
-use App\Models\Information; // <-- 1. IMPORT MODEL INFORMATION
+use App\Models\Information; 
+use App\Models\Flyer; // 1. TAMBAHKAN: Import model Flyer
+// <-- 1. IMPORT MODEL INFORMATION
 use App\Models\Setting; // <-- 1. PASTIKAN MODEL SETTING DI-IMPORT
 use Illuminate\Http\Request;
 
@@ -33,6 +35,10 @@ class DashboardController extends Controller
             $informations = Information::latest()->get();
         }
 
+         $flyers = Flyer::where('is_active', true)
+                       ->orderBy('order', 'asc')
+                       ->take(3)
+                       ->get();
 
         // Mengirim semua data ke view 'db'
         return view('db', [
@@ -41,7 +47,7 @@ class DashboardController extends Controller
             'testimonials' => $testimonials,
             'facilities'   => $facilities, // Variabel ini sudah benar
             'informations' => $informations, // <-- Data informasi ditambahkan di sini
-
+            'flyers'
         ]);
     }
 

@@ -38,6 +38,10 @@
 @if($informations->isNotEmpty())
     <x-information-section :informations="$informations" />
 @endif
+
+
+<x-flyer-section :flyers="$flyers" />
+
     
     {{-- fasilitas --}}
     {{-- <x-facilities-grid/> --}}
