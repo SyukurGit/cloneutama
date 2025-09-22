@@ -29,13 +29,14 @@ class FlyerController extends Controller
             'is_active' => 'sometimes|boolean',
         ]);
 
-        $path = $request->file('image')->store('public/flyers');
+        // PERBAIKAN 1: Simpan di folder 'flyers' dalam disk 'public'
+        $path = $request->file('image')->store('flyers', 'public');
 
         Flyer::create([
             'title' => $request->title,
-            'image_path' => $path,
+            'image_path' => $path, // Path yang disimpan sekarang sudah benar
             'order' => $request->order,
-            'is_active' => $request->has('is_active') ? $request->is_active : false,
+            'is_active' => $request->boolean('is_active'), // Cara yang lebih baik untuk boolean
         ]);
 
         return redirect()->route('admin.flyers.index')->with('success', 'Flyer berhasil ditambahkan.');
@@ -56,13 +57,15 @@ class FlyerController extends Controller
         ]);
 
         $data = $request->only('title', 'order');
-        $data['is_active'] = $request->has('is_active');
+        $data['is_active'] = $request->boolean('is_active'); // Cara yang lebih baik untuk boolean
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
-            Storage::delete($flyer->image_path);
-            // Simpan gambar baru
-            $data['image_path'] = $request->file('image')->store('public/flyers');
+            // PERBAIKAN 2: Hapus gambar lama dari disk 'public'
+            if ($flyer->image_path) {
+                Storage::disk('public')->delete($flyer->image_path);
+            }
+            // Simpan gambar baru di disk 'public'
+            $data['image_path'] = $request->file('image')->store('flyers', 'public');
         }
 
         $flyer->update($data);
@@ -72,9 +75,11 @@ class FlyerController extends Controller
 
     public function destroy(Flyer $flyer)
     {
-        // Hapus gambar dari storage
-        Storage::delete($flyer->image_path);
-        // Hapus data dari database
+        // PERBAIKAN 3: Hapus gambar dari disk 'public'
+        if ($flyer->image_path) {
+            Storage::disk('public')->delete($flyer->image_path);
+        }
+        
         $flyer->delete();
 
         return redirect()->route('admin.flyers.index')->with('success', 'Flyer berhasil dihapus.');

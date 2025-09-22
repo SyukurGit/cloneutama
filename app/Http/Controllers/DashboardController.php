@@ -47,7 +47,7 @@ class DashboardController extends Controller
             'testimonials' => $testimonials,
             'facilities'   => $facilities, // Variabel ini sudah benar
             'informations' => $informations, // <-- Data informasi ditambahkan di sini
-            'flyers'
+            'flyers'       => $flyers,
         ]);
     }
 
